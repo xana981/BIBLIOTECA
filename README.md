@@ -23,7 +23,6 @@ Para los socios, podremos dar de alta, baja, modificar datos
 Para los libros, podremos añadir y sacar del inventario
 Para la gestión de préstamos, tendremos que dar de alta un préstamo, de baja cuando
 el socio lo devuelva. Debemos tener en cuenta de que en nuestra biblioteca pueden
-
 existir varios ejemplares con el mismo título pero que la manera unívoca de
 identificarlos será a través de su ISBN.
 Por otro lado, tendremos también información acerca de los bibliotecarios
