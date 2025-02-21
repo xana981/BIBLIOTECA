@@ -42,3 +42,4 @@ Con la información que disponemos se pide:
 relacional SQLite
 4. Codificación del proyecto utilizando Eclipse.
 5. Utilizaremos un repositorio en GitHub para ir almacenando los cambios
+Añadida nueva linea en rama trabajo
