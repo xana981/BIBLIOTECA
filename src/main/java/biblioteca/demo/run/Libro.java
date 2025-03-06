@@ -2,26 +2,16 @@ package biblioteca.demo.run;
 
 public class Libro {
 
-	private int isbn;
+	private int isbn; //asociada a la clave primaria en la tabla de DB
 	private String titulo;
 	private String autor;
 	private int edicion;	
-
-	public void darAltaInventario (int i, String t,String a, int e) {
-		// metodo para meter libro en inventario
-		//como argumentos le tengo que pasar todos lo datos del libro
-		
-		
-	}
 	
-	public void darBajaInventario(int i) {
-		// metodo para dar de baja libro en inventario
-		//como argumentos le paso el isbn que es el identificador del libro	en la BD
 		
-		
-		
-	}
-//Metodo set, modificar. 
+	
+	
+	
+//Metodo set, va modificar ese atributo. 
 //Metodo get para consultar, te devuelve el valor del atributo
 	
 	public int getIsbn() { 
@@ -40,20 +30,22 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public String getAutor() {
+	public String getAutor() { //Me devuelve el valor del atributo, una cadena de caracteres
 		return autor;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setAutor(String autor) { //entre parentesis el argumento al que voy a llamar
+		this.autor = autor; //Le asigno al atributo el valor que le paso como argumento
 	}
 
-	public int getEdicion() {
-		return edicion;
+	public int getEdicion() { 	// Te devuelve el valor del atributo edicion de la clase libro, 
+								// al ser público se puede invocar o llamar desde fuera de la clase
+								// al definir el metodo me tiene que devolver un tipo int porque el atributo edicion está definido como entero.
+		return edicion; //la sentencia return me devuelve el resultado al metodo
 	}
 
-	public void setEdicion(int edicion) {
-		this.edicion = edicion;
+	public void setEdicion(int edicion) { //al poner tipo void no me hace falta poner la sentencia return
+		this.edicion = edicion; //asigna al atributo edicion, el valor que le paso como argumento en la llamada del metodo
 	}
 	
 	
