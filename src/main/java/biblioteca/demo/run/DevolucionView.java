@@ -25,6 +25,7 @@ import java.awt.TextField;
 import java.awt.Panel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
+import biblioteca.demo.run.BibliotecaView;
 
 public class DevolucionView {
 	
@@ -115,7 +116,8 @@ public class DevolucionView {
 		txtpnNombreApellidos.setBounds(10, 99, 180, 21);
 		frmBiblioteca.getContentPane().add(txtpnNombreApellidos);
 		
-		Label labelNombreApellidos = new Label("");
+		Label labelNombreApellidos = new Label("Nombre y apellidos");
+		labelNombreApellidos.setForeground(Color.GRAY);
 		labelNombreApellidos.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		labelNombreApellidos.setBounds(20, 126, 350, 27);
 		frmBiblioteca.getContentPane().add(labelNombreApellidos);
@@ -126,5 +128,17 @@ public class DevolucionView {
 		txtpnListaDeLibros.setBackground(SystemColor.menu);
 		txtpnListaDeLibros.setBounds(10, 159, 264, 21);
 		frmBiblioteca.getContentPane().add(txtpnListaDeLibros);
+		
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla
+			}
+		});
+		btnAtras.setForeground(Color.BLACK);
+		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setBounds(10, 11, 65, 27);
+		frmBiblioteca.getContentPane().add(btnAtras);
 	}
 }

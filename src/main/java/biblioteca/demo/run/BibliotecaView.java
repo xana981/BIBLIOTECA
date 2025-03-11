@@ -11,6 +11,12 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.JToggleButton;
+
+import biblioteca.demo.run.PrestamoView;
+import biblioteca.demo.run.DevolucionView;
+import biblioteca.demo.run.SociosView;
+import biblioteca.demo.run.LibrosView;
+
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -41,6 +47,7 @@ public class BibliotecaView {
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				PrestamoView prestamo = new PrestamoView();	 //Cambio de pantalla
 			}
 		});
 		frmBiblioteca.getContentPane().setLayout(null);
@@ -53,6 +60,11 @@ public class BibliotecaView {
 		frmBiblioteca.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("REALIZAR DEVOLUCIÓN");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DevolucionView devolucion = new DevolucionView();	 //Cambio de pantalla
+			}
+		});
 		btnNewButton_2.setBounds(80, 110, 280, 35);
 		btnNewButton_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frmBiblioteca.getContentPane().add(btnNewButton_2);
@@ -62,6 +74,7 @@ public class BibliotecaView {
 		btnNewButton_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				LibrosView libros = new LibrosView();	 //Cambio de pantalla
 			}
 		});
 		frmBiblioteca.getContentPane().add(btnNewButton_3);
@@ -71,6 +84,7 @@ public class BibliotecaView {
 		btnNewButton_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SociosView socios = new SociosView();	 //Cambio de pantalla
 			}
 		});
 		frmBiblioteca.getContentPane().add(btnNewButton_4);

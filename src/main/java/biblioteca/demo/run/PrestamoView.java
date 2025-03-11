@@ -27,6 +27,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
 
+import biblioteca.demo.run.BibliotecaView;
+
 public class PrestamoView {
 	
 	protected JFrame frmBiblioteca;
@@ -47,7 +49,7 @@ public class PrestamoView {
 		
 		JButton btnPrestamo = new JButton("Confirmar préstamo");
 		btnPrestamo.setBackground(new Color(255, 192, 203));
-		btnPrestamo.setBounds(198, 368, 207, 51);
+		btnPrestamo.setBounds(213, 360, 207, 51);
 		btnPrestamo.setForeground(new Color(0, 0, 0));
 		btnPrestamo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnPrestamo.addActionListener(new ActionListener() {
@@ -57,7 +59,7 @@ public class PrestamoView {
 		frmBiblioteca.getContentPane().setLayout(null);
 		
 		JLabel lblPrestamo = new JLabel(" PRÉSTAMO");
-		lblPrestamo.setBounds(206, 11, 180, 40);
+		lblPrestamo.setBounds(223, 11, 180, 40);
 		lblPrestamo.setForeground(new Color(0, 0, 255));
 		lblPrestamo.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmBiblioteca.getContentPane().add(lblPrestamo);
@@ -78,7 +80,7 @@ public class PrestamoView {
 				{null, null, null, null},
 			},
 			new String[] {
-				"isbn", "Titulo", "Fecha pr\u00E9stamo", "Fecha dev."
+				"isbn", "Titulo", "Fecha pr\u00E9stamo", "Duraci\u00F3n"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -116,7 +118,8 @@ public class PrestamoView {
 		txtpnNombreApellidos.setBounds(10, 99, 180, 21);
 		frmBiblioteca.getContentPane().add(txtpnNombreApellidos);
 		
-		Label labelNombreApellidos = new Label("");
+		Label labelNombreApellidos = new Label("Nombre y apellidos");
+		labelNombreApellidos.setForeground(Color.GRAY);
 		labelNombreApellidos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		labelNombreApellidos.setBounds(20, 126, 350, 27);
 		frmBiblioteca.getContentPane().add(labelNombreApellidos);
@@ -150,9 +153,40 @@ public class PrestamoView {
 		txtpnFechaNacimiento.setBounds(394, 99, 218, 21);
 		frmBiblioteca.getContentPane().add(txtpnFechaNacimiento);
 		
-		Label labelFechaNacimiento = new Label("");
+		Label labelFechaNacimiento = new Label("Fecha nacimiento");
+		labelFechaNacimiento.setForeground(Color.GRAY);
 		labelFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		labelFechaNacimiento.setBounds(404, 126, 208, 27);
 		frmBiblioteca.getContentPane().add(labelFechaNacimiento);
+		
+		JTextPane txtpnDuracion = new JTextPane();
+		txtpnDuracion.setText("Duración préstamo");
+		txtpnDuracion.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnDuracion.setBackground(SystemColor.menu);
+		txtpnDuracion.setBounds(10, 326, 123, 27);
+		frmBiblioteca.getContentPane().add(txtpnDuracion);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("15 días");
+		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		rdbtnNewRadioButton.setBounds(148, 322, 70, 31);
+		frmBiblioteca.getContentPane().add(rdbtnNewRadioButton);
+		
+		JRadioButton rdbtnDas = new JRadioButton("30 días");
+		rdbtnDas.setToolTipText("");
+		rdbtnDas.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		rdbtnDas.setBounds(235, 322, 70, 31);
+		frmBiblioteca.getContentPane().add(rdbtnDas);
+		
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla
+			}
+		});
+		btnAtras.setForeground(Color.BLACK);
+		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setBounds(10, 11, 70, 27);
+		frmBiblioteca.getContentPane().add(btnAtras);
 	}
 }

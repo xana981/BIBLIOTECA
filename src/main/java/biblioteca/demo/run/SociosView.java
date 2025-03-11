@@ -26,11 +26,12 @@ import java.awt.Panel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
+import biblioteca.demo.run.BibliotecaView;
 
 public class SociosView {
 	
 	protected JFrame frmBiblioteca;
-	private JTable tablePrestados;
+	private JTable tableSocio;
 	
 	public SociosView() {
 		inicialize();
@@ -45,40 +46,40 @@ public class SociosView {
 		});
 		frmBiblioteca.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		
-		JButton btnPrestamo = new JButton("Confirmar préstamo");
-		btnPrestamo.setBackground(new Color(255, 192, 203));
-		btnPrestamo.setBounds(405, 102, 207, 51);
-		btnPrestamo.setForeground(new Color(0, 0, 0));
-		btnPrestamo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnPrestamo.addActionListener(new ActionListener() {
+		JButton btnCambioSocio = new JButton("Confirmar cambios");
+		btnCambioSocio.setBounds(376, 162, 207, 51);
+		btnCambioSocio.setBackground(new Color(255, 192, 203));
+		btnCambioSocio.setForeground(new Color(0, 0, 0));
+		btnCambioSocio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnCambioSocio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		frmBiblioteca.getContentPane().setLayout(null);
 		
 		JLabel lblSocio = new JLabel("SOCIO");
-		lblSocio.setBounds(206, 11, 180, 40);
+		lblSocio.setBounds(271, 21, 99, 40);
 		lblSocio.setForeground(new Color(0, 0, 255));
 		lblSocio.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmBiblioteca.getContentPane().add(lblSocio);
-		frmBiblioteca.getContentPane().add(btnPrestamo);
+		frmBiblioteca.getContentPane().add(btnCambioSocio);
 		
 		JScrollPane scrollPanePrestados = new JScrollPane();
-		scrollPanePrestados.setToolTipText("");
 		scrollPanePrestados.setBounds(20, 324, 592, 80);
+		scrollPanePrestados.setToolTipText("");
 		frmBiblioteca.getContentPane().add(scrollPanePrestados);
 		
-		tablePrestados = new JTable();
-		tablePrestados.setColumnSelectionAllowed(true);
-		tablePrestados.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		tablePrestados.setModel(new DefaultTableModel(
+		tableSocio = new JTable();
+		tableSocio.setColumnSelectionAllowed(true);
+		tableSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		tableSocio.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
 			},
 			new String[] {
-				"isbn", "Titulo", "Fecha pr\u00E9stamo", "Fecha dev."
+				"isbn", "Titulo", "Fecha pr\u00E9stamo", "Duraci\u00F3n"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -88,68 +89,115 @@ public class SociosView {
 				return columnTypes[columnIndex];
 			}
 		});
-		tablePrestados.getColumnModel().getColumn(0).setResizable(false);
-		tablePrestados.getColumnModel().getColumn(0).setPreferredWidth(40);
-		tablePrestados.getColumnModel().getColumn(1).setPreferredWidth(200);
-		tablePrestados.getColumnModel().getColumn(2).setPreferredWidth(70);
-		tablePrestados.getColumnModel().getColumn(3).setResizable(false);
-		tablePrestados.getColumnModel().getColumn(3).setPreferredWidth(70);
-		scrollPanePrestados.setViewportView(tablePrestados);
+		tableSocio.getColumnModel().getColumn(0).setResizable(false);
+		tableSocio.getColumnModel().getColumn(0).setPreferredWidth(40);
+		tableSocio.getColumnModel().getColumn(1).setPreferredWidth(200);
+		tableSocio.getColumnModel().getColumn(2).setResizable(false);
+		tableSocio.getColumnModel().getColumn(2).setPreferredWidth(90);
+		tableSocio.getColumnModel().getColumn(3).setResizable(false);
+		tableSocio.getColumnModel().getColumn(3).setPreferredWidth(74);
+		scrollPanePrestados.setViewportView(tableSocio);
 		
 		JTextPane txtpnIntroducirSocio = new JTextPane();
+		txtpnIntroducirSocio.setBounds(10, 78, 132, 27);
 		txtpnIntroducirSocio.setBackground(SystemColor.menu);
 		txtpnIntroducirSocio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnIntroducirSocio.setText("Introducir nº de socio");
-		txtpnIntroducirSocio.setBounds(10, 62, 132, 27);
 		frmBiblioteca.getContentPane().add(txtpnIntroducirSocio);
 		
 		TextField textFieldSocio = new TextField();
+		textFieldSocio.setForeground(Color.GRAY);
+		textFieldSocio.setBounds(148, 78, 174, 27);
 		textFieldSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		textFieldSocio.setText("< Introduce el nº >");
-		textFieldSocio.setBounds(148, 62, 174, 27);
 		frmBiblioteca.getContentPane().add(textFieldSocio);
 		
 		JTextPane txtpnNombreApellidos = new JTextPane();
+		txtpnNombreApellidos.setBounds(10, 115, 180, 21);
 		txtpnNombreApellidos.setBackground(SystemColor.menu);
 		txtpnNombreApellidos.setText("Nombre y apellidos del socio");
 		txtpnNombreApellidos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnNombreApellidos.setBounds(10, 99, 180, 21);
 		frmBiblioteca.getContentPane().add(txtpnNombreApellidos);
 		
-		Label labelNombreApellidos = new Label("");
-		labelNombreApellidos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		labelNombreApellidos.setBounds(20, 126, 350, 27);
+		Label labelNombreApellidos = new Label("Nombre y apellidos\r\n");
+		labelNombreApellidos.setForeground(Color.GRAY);
+		labelNombreApellidos.setBounds(20, 142, 341, 27);
+		labelNombreApellidos.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frmBiblioteca.getContentPane().add(labelNombreApellidos);
 		
 		JTextPane txtpnListaDeLibros = new JTextPane();
+		txtpnListaDeLibros.setBounds(10, 292, 264, 21);
 		txtpnListaDeLibros.setText("Lista de libros prestados (No devueltos)");
 		txtpnListaDeLibros.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnListaDeLibros.setBackground(SystemColor.menu);
-		txtpnListaDeLibros.setBounds(10, 292, 264, 21);
 		frmBiblioteca.getContentPane().add(txtpnListaDeLibros);
 		
+		JTextPane txtpnInfo = new JTextPane();
+		txtpnInfo.setBounds(10, 235, 142, 21);
+		txtpnInfo.setText("Información adicional");
+		txtpnInfo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnInfo.setBackground(SystemColor.menu);
+		frmBiblioteca.getContentPane().add(txtpnInfo);
+		
+		Label labelInfo = new Label("Informacion adicional");
+		labelInfo.setForeground(Color.GRAY);
+		labelInfo.setBounds(20, 262, 341, 27);
+		labelInfo.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		frmBiblioteca.getContentPane().add(labelInfo);
+		
 		JTextPane txtpnFechaNacimiento = new JTextPane();
-		txtpnFechaNacimiento.setText("Información adicional");
+		txtpnFechaNacimiento.setBounds(10, 175, 109, 21);
+		txtpnFechaNacimiento.setText("Fecha Nacimiento");
 		txtpnFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnFechaNacimiento.setBackground(SystemColor.menu);
-		txtpnFechaNacimiento.setBounds(10, 219, 218, 21);
 		frmBiblioteca.getContentPane().add(txtpnFechaNacimiento);
 		
-		Label labelFechaNacimiento = new Label("");
-		labelFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		labelFechaNacimiento.setBounds(20, 246, 592, 27);
+		Label labelFechaNacimiento = new Label("Fecha de nacimiento");
+		labelFechaNacimiento.setForeground(Color.GRAY);
+		labelFechaNacimiento.setBounds(20, 202, 208, 27);
+		labelFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frmBiblioteca.getContentPane().add(labelFechaNacimiento);
 		
-		JTextPane txtpnFechaNacimiento_1 = new JTextPane();
-		txtpnFechaNacimiento_1.setText("Fecha Nacimiento");
-		txtpnFechaNacimiento_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnFechaNacimiento_1.setBackground(SystemColor.menu);
-		txtpnFechaNacimiento_1.setBounds(10, 159, 218, 21);
-		frmBiblioteca.getContentPane().add(txtpnFechaNacimiento_1);
+		JButton btnAñadirNuevo = new JButton("Añadir nuevo");
+		btnAñadirNuevo.setBounds(376, 85, 207, 51);
+		btnAñadirNuevo.setForeground(Color.BLACK);
+		btnAñadirNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnAñadirNuevo.setBackground(new Color(255, 192, 203));
+		frmBiblioteca.getContentPane().add(btnAñadirNuevo);
 		
-		Label labelFechaNacimiento_1 = new Label("");
-		labelFechaNacimiento_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		labelFechaNacimiento_1.setBounds(20, 186, 208, 27);
-		frmBiblioteca.getContentPane().add(labelFechaNacimiento_1);
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(376, 238, 207, 51);
+		btnEliminar.setForeground(Color.BLACK);
+		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnEliminar.setBackground(new Color(255, 192, 203));
+		frmBiblioteca.getContentPane().add(btnEliminar);
+		
+		JButton btnModificarNombre = new JButton("Modificar");
+		btnModificarNombre.setBounds(186, 115, 89, 23);
+		btnModificarNombre.setForeground(Color.RED);
+		frmBiblioteca.getContentPane().add(btnModificarNombre);
+		
+		JButton btnModificarFecha = new JButton("Modificar");
+		btnModificarFecha.setBounds(129, 178, 89, 23);
+		btnModificarFecha.setForeground(Color.RED);
+		frmBiblioteca.getContentPane().add(btnModificarFecha);
+		
+		JButton btnModificarInfo = new JButton("Modificar");
+		btnModificarInfo.setBounds(148, 235, 89, 23);
+		btnModificarInfo.setForeground(Color.RED);
+		frmBiblioteca.getContentPane().add(btnModificarInfo);
+		
+		JButton btnAtras = new JButton("Atrás");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla
+			}
+			
+		});
+		btnAtras.setForeground(Color.BLACK);
+		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setBounds(10, 11, 75, 27);
+		frmBiblioteca.getContentPane().add(btnAtras);
 	}
 }
