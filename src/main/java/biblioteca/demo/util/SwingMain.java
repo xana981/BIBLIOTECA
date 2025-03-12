@@ -59,14 +59,16 @@ public class SwingMain {
 		JButton btnNewButton = new JButton("BIENVENIDO A LA GESTION DE BIBLIOTECA");
 		btnNewButton.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { //evento de pulsar el boton y me abre la vista
-				BibliotecaView biblioteca = new BibliotecaView();	 } //creo biblioteca y va invocar al constructor
+				BibliotecaView biblioteca = new BibliotecaView();	//creo biblioteca y va invocar al constructor
+				
+			} 
 		});
 		frame.getContentPane().add(btnNewButton, BorderLayout.CENTER);
 		
-		Database db=new Database(); //creo la base de datos de prueba
+		//Database db=new Database(); //creo la base de datos de prueba
 		
-		db.createDatabase(false); //le paso el valor falso porque considero que no esta creada aun
-		db.loadDatabase(); //cargo datos de prueba
+	//	db.createDatabase(false); //le paso el valor falso porque considero que no esta creada aun
+		//db.loadDatabase(); //cargo datos de prueba
 		
 	}
 		
