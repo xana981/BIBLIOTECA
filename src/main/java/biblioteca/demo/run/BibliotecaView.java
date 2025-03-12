@@ -46,10 +46,8 @@ public class BibliotecaView {
 		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnNewButton_1.addActionListener(new ActionListener() {
-			private PrestamoView prestamo;
-
 			public void actionPerformed(ActionEvent e) {
-				prestamo = new PrestamoView();
+				PrestamoView prestamo = new PrestamoView();	 //Cambio de pantalla
 			}
 		});
 		frmBiblioteca.getContentPane().setLayout(null);

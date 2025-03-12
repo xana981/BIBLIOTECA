@@ -1,32 +1,21 @@
 package biblioteca.demo.run;
-import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JMenuBar;
-import javax.swing.JRadioButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Color;
-import javax.swing.JToggleButton;
-import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.Font;
+import java.awt.Label;
+import java.awt.SystemColor;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-import javax.swing.JEditorPane;
-import java.awt.TextField;
-import java.awt.Panel;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Label;
-import javax.swing.JComboBox;
-import biblioteca.demo.run.BibliotecaView;
 
 public class SociosView {
 	

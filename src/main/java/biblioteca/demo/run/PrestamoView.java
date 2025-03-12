@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
 
-import biblioteca.demo.run.*;
+import biblioteca.demo.run.BibliotecaView;
 
 public class PrestamoView {
 	
