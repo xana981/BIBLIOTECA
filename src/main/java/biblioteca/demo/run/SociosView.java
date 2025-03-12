@@ -196,7 +196,7 @@ public class SociosView {
 		});
 		btnAtras.setForeground(Color.BLACK);
 		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 75, 27);
 		frmBiblioteca.getContentPane().add(btnAtras);
 	}

@@ -68,7 +68,7 @@ public class LibrosView {
 		
 		JScrollPane scrollPaneLibro = new JScrollPane();
 		scrollPaneLibro.setToolTipText("");
-		scrollPaneLibro.setBounds(22, 366, 592, 51);
+		scrollPaneLibro.setBounds(20, 373, 592, 51);
 		frmBiblioteca.getContentPane().add(scrollPaneLibro);
 		
 		tableLibro = new JTable();
@@ -129,7 +129,7 @@ public class LibrosView {
 		txtpnPrestado.setText("Está prestado");
 		txtpnPrestado.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnPrestado.setBackground(SystemColor.menu);
-		txtpnPrestado.setBounds(10, 334, 264, 21);
+		txtpnPrestado.setBounds(17, 341, 264, 21);
 		frmBiblioteca.getContentPane().add(txtpnPrestado);
 		
 		JTextPane txtpnEdicion = new JTextPane();
@@ -168,7 +168,7 @@ public class LibrosView {
 		Label labelCategoria = new Label("Categoría");
 		labelCategoria.setForeground(Color.GRAY);
 		labelCategoria.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		labelCategoria.setBounds(22, 301, 261, 27);
+		labelCategoria.setBounds(20, 308, 261, 27);
 		frmBiblioteca.getContentPane().add(labelCategoria);
 		
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo");
@@ -192,7 +192,7 @@ public class LibrosView {
 		
 		JButton btnAutor = new JButton("Modificar");
 		btnAutor.setForeground(Color.RED);
-		btnAutor.setBounds(65, 157, 89, 23);
+		btnAutor.setBounds(65, 159, 89, 23);
 		frmBiblioteca.getContentPane().add(btnAutor);
 		
 		JButton btnEdicion = new JButton("Modificar");
@@ -213,7 +213,7 @@ public class LibrosView {
 		});
 		btnAtras.setForeground(Color.BLACK);
 		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 76, 27);
 		frmBiblioteca.getContentPane().add(btnAtras);
 	}

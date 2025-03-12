@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
 
-import biblioteca.demo.run.BibliotecaView;
+import biblioteca.demo.run.*;
 
 public class PrestamoView {
 	
@@ -49,7 +49,7 @@ public class PrestamoView {
 		
 		JButton btnPrestamo = new JButton("Confirmar préstamo");
 		btnPrestamo.setBackground(new Color(255, 192, 203));
-		btnPrestamo.setBounds(213, 360, 207, 51);
+		btnPrestamo.setBounds(54, 360, 207, 51);
 		btnPrestamo.setForeground(new Color(0, 0, 0));
 		btnPrestamo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnPrestamo.addActionListener(new ActionListener() {
@@ -58,16 +58,16 @@ public class PrestamoView {
 		});
 		frmBiblioteca.getContentPane().setLayout(null);
 		
-		JLabel lblPrestamo = new JLabel(" PRÉSTAMO");
-		lblPrestamo.setBounds(223, 11, 180, 40);
-		lblPrestamo.setForeground(new Color(0, 0, 255));
-		lblPrestamo.setFont(new Font("Times New Roman", Font.BOLD, 28));
-		frmBiblioteca.getContentPane().add(lblPrestamo);
+		JLabel lblPrestamoDevolucion = new JLabel(" PRÉSTAMO / DEVOLUCIÓN");
+		lblPrestamoDevolucion.setBounds(223, 11, 405, 40);
+		lblPrestamoDevolucion.setForeground(new Color(0, 0, 255));
+		lblPrestamoDevolucion.setFont(new Font("Times New Roman", Font.BOLD, 28));
+		frmBiblioteca.getContentPane().add(lblPrestamoDevolucion);
 		frmBiblioteca.getContentPane().add(btnPrestamo);
 		
 		JScrollPane scrollPanePrestados = new JScrollPane();
 		scrollPanePrestados.setToolTipText("");
-		scrollPanePrestados.setBounds(20, 197, 592, 80);
+		scrollPanePrestados.setBounds(20, 197, 729, 80);
 		frmBiblioteca.getContentPane().add(scrollPanePrestados);
 		
 		tablePrestados = new JTable();
@@ -121,7 +121,7 @@ public class PrestamoView {
 		Label labelNombreApellidos = new Label("Nombre y apellidos");
 		labelNombreApellidos.setForeground(Color.GRAY);
 		labelNombreApellidos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		labelNombreApellidos.setBounds(20, 126, 350, 27);
+		labelNombreApellidos.setBounds(20, 126, 417, 27);
 		frmBiblioteca.getContentPane().add(labelNombreApellidos);
 		
 		JTextPane txtpnListaDeLibros = new JTextPane();
@@ -132,31 +132,31 @@ public class PrestamoView {
 		frmBiblioteca.getContentPane().add(txtpnListaDeLibros);
 		
 		JTextPane txtpnIntroducirIsbn = new JTextPane();
-		txtpnIntroducirIsbn.setText("Introducir isbn libro");
+		txtpnIntroducirIsbn.setText("Introducir isbn");
 		txtpnIntroducirIsbn.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnIntroducirIsbn.setBackground(SystemColor.menu);
-		txtpnIntroducirIsbn.setBounds(10, 288, 132, 27);
+		txtpnIntroducirIsbn.setBounds(10, 288, 97, 27);
 		frmBiblioteca.getContentPane().add(txtpnIntroducirIsbn);
 		
 		JComboBox comboIsbnLibros = new JComboBox();
 		comboIsbnLibros.setEditable(true);
 		comboIsbnLibros.setMaximumRowCount(15);
 		comboIsbnLibros.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		comboIsbnLibros.setToolTipText("< Introduce el isbn >");
-		comboIsbnLibros.setBounds(148, 288, 377, 27);
+		comboIsbnLibros.setToolTipText("Introduce el isbn");
+		comboIsbnLibros.setBounds(113, 288, 324, 27);
 		frmBiblioteca.getContentPane().add(comboIsbnLibros);
 		
 		JTextPane txtpnFechaNacimiento = new JTextPane();
 		txtpnFechaNacimiento.setText("Fecha Nacimiento");
 		txtpnFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnFechaNacimiento.setBackground(SystemColor.menu);
-		txtpnFechaNacimiento.setBounds(394, 99, 218, 21);
+		txtpnFechaNacimiento.setBounds(461, 99, 218, 21);
 		frmBiblioteca.getContentPane().add(txtpnFechaNacimiento);
 		
 		Label labelFechaNacimiento = new Label("Fecha nacimiento");
 		labelFechaNacimiento.setForeground(Color.GRAY);
 		labelFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		labelFechaNacimiento.setBounds(404, 126, 208, 27);
+		labelFechaNacimiento.setBounds(471, 126, 208, 27);
 		frmBiblioteca.getContentPane().add(labelFechaNacimiento);
 		
 		JTextPane txtpnDuracion = new JTextPane();
@@ -168,13 +168,13 @@ public class PrestamoView {
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("15 días");
 		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		rdbtnNewRadioButton.setBounds(148, 322, 70, 31);
+		rdbtnNewRadioButton.setBounds(139, 322, 70, 31);
 		frmBiblioteca.getContentPane().add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnDas = new JRadioButton("30 días");
 		rdbtnDas.setToolTipText("");
 		rdbtnDas.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		rdbtnDas.setBounds(235, 322, 70, 31);
+		rdbtnDas.setBounds(226, 322, 70, 31);
 		frmBiblioteca.getContentPane().add(rdbtnDas);
 		
 		JButton btnAtras = new JButton("Atrás");
@@ -185,8 +185,15 @@ public class PrestamoView {
 		});
 		btnAtras.setForeground(Color.BLACK);
 		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		btnAtras.setBackground(Color.BLUE);
+		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 70, 27);
 		frmBiblioteca.getContentPane().add(btnAtras);
+		
+		JButton btnDevolucion = new JButton("Confirmar devolución");
+		btnDevolucion.setForeground(Color.BLACK);
+		btnDevolucion.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnDevolucion.setBackground(new Color(255, 192, 203));
+		btnDevolucion.setBounds(517, 360, 207, 51);
+		frmBiblioteca.getContentPane().add(btnDevolucion);
 	}
 }

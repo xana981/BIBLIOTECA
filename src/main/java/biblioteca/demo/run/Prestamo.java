@@ -6,6 +6,8 @@ public class Prestamo {
 	private int socio;
 	private int fechaPrestamo;
 	private int fechaDevolucion;
+	private int duracion;
+	
 	
 	
 	public int getLibro() {
@@ -34,6 +36,13 @@ public class Prestamo {
 	}
 	public void setFechaDevolucion(int fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
+	}
+	
+	public int getDuracion() {
+		return duracion;
+	}
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
 	}
 	
 	
