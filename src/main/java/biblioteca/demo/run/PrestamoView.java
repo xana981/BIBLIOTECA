@@ -1,33 +1,26 @@
 package biblioteca.demo.run;
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
-import javax.swing.JMenuBar;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Color;
-import javax.swing.JToggleButton;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-import javax.swing.JEditorPane;
+
 import java.awt.TextField;
-import java.awt.Panel;
+
 import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
 
-import biblioteca.demo.run.BibliotecaView;
+import biblioteca.demo.run.*;
 import java.awt.Dimension;
 
 public class PrestamoView {
@@ -58,6 +51,7 @@ public class PrestamoView {
 		btnPrestamo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnPrestamo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ConfirmarView confirmar = new ConfirmarView();	 //Activa la pantalla Confirmar	
 			}
 		});
 		frmPrestamo.getContentPane().setLayout(null);
@@ -170,16 +164,34 @@ public class PrestamoView {
 		txtpnDuracion.setBounds(10, 326, 123, 27);
 		frmPrestamo.getContentPane().add(txtpnDuracion);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("15 días");
-		rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		rdbtnNewRadioButton.setBounds(139, 322, 70, 31);
-		frmPrestamo.getContentPane().add(rdbtnNewRadioButton);
+		JRadioButton rdbtn15 = new JRadioButton("15 días");
+
+		rdbtn15.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		rdbtn15.setBounds(139, 322, 70, 31);
+		frmPrestamo.getContentPane().add(rdbtn15);
 		
-		JRadioButton rdbtnDas = new JRadioButton("30 días");
-		rdbtnDas.setToolTipText("");
-		rdbtnDas.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		rdbtnDas.setBounds(226, 322, 70, 31);
-		frmPrestamo.getContentPane().add(rdbtnDas);
+		JRadioButton rdbtn30 = new JRadioButton("30 días");
+		
+		rdbtn30.setToolTipText("");
+		rdbtn30.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		rdbtn30.setBounds(226, 322, 70, 31);
+		frmPrestamo.getContentPane().add(rdbtn30);
+		
+		
+		rdbtn15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtn30.setSelected(false);
+			}
+		});
+		
+		rdbtn30.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rdbtn15.setSelected(false);
+			}
+		});
+		
+		
+		
 		
 		JButton btnAtras = new JButton("Atrás");
 		btnAtras.addActionListener(new ActionListener() {
@@ -195,6 +207,11 @@ public class PrestamoView {
 		frmPrestamo.getContentPane().add(btnAtras);
 		
 		JButton btnDevolucion = new JButton("Confirmar devolución");
+		btnDevolucion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConfirmarView confirmar = new ConfirmarView();	 //Activa la pantalla Confirmar	
+			}
+		});
 		btnDevolucion.setForeground(Color.BLACK);
 		btnDevolucion.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnDevolucion.setBackground(new Color(255, 192, 203));

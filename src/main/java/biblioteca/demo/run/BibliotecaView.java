@@ -79,11 +79,11 @@ public class BibliotecaView {
 		});
 		frmBiblioteca.getContentPane().add(btnNewButton_4);
 		
-		TextField textFieldContrasenia = new TextField();
-		textFieldContrasenia.setBounds(130, 282, 178, 26);
-		textFieldContrasenia.setText("< Introduce la contraseña >");
-		textFieldContrasenia.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		frmBiblioteca.getContentPane().add(textFieldContrasenia);
+		TextField textFieldClave = new TextField();
+		textFieldClave.setBounds(130, 282, 178, 26);
+		textFieldClave.setText("< Introduce la contraseña >");
+		textFieldClave.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		frmBiblioteca.getContentPane().add(textFieldClave);
 		
 		JComboBox comboIsbnTrabajador = new JComboBox();
 		comboIsbnTrabajador.setBounds(116, 249, 215, 27);
@@ -96,5 +96,17 @@ public class BibliotecaView {
 		JButton btnLogear = new JButton("Login");
 		btnLogear.setBounds(193, 314, 65, 26);
 		frmBiblioteca.getContentPane().add(btnLogear);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmBiblioteca.setVisible(false);
+			}
+		});
+		btnSalir.setForeground(new Color(255, 255, 255));
+		btnSalir.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		btnSalir.setBackground(Color.LIGHT_GRAY);
+		btnSalir.setBounds(366, 328, 70, 27);
+		frmBiblioteca.getContentPane().add(btnSalir);
 	}
 }

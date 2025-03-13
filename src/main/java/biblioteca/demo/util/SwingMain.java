@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 
 import biblioteca.demo.run.BibliotecaView;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 
 
 
@@ -52,11 +54,14 @@ public class SwingMain {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
+		frame.setSize(new Dimension(600, 200));
 		frame.setTitle("Main");
 		frame.setBounds(0, 0, 287, 185);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
-		JButton btnNewButton = new JButton("BIENVENIDO A LA GESTION DE BIBLIOTECA");
+		JButton btnNewButton = new JButton("ACCEDER A BIBLIOTECA");
+		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { //evento de pulsar el boton y me abre la vista
 				BibliotecaView biblioteca = new BibliotecaView();	//creo biblioteca y va invocar al constructor
@@ -73,5 +78,7 @@ public class SwingMain {
 	}
 		
 	public JFrame getFrame() { return this.frame; }
+	
+
 	
 }
