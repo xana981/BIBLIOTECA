@@ -45,16 +45,17 @@ public class ConfirmarView {
 		frmConfirmar.getContentPane().add(lblSeguro);
 		
 		JButton btnSi = new JButton("Sí");
-		btnSi.addActionListener(new ActionListener() {
+		btnSi.addActionListener(new ActionListener() { //Cuando pulsamos sobre el SI
 			public void actionPerformed(ActionEvent e) {
 				frmConfirmar.setVisible(false);
+
 			}
 		});
 		btnSi.setBounds(38, 75, 65, 26);
 		frmConfirmar.getContentPane().add(btnSi);
 		
 		JButton btnNo = new JButton("No");
-		btnNo.addActionListener(new ActionListener() {
+		btnNo.addActionListener(new ActionListener() { //Cuando pulsamos sobre el NO
 			public void actionPerformed(ActionEvent e) {
 				frmConfirmar.setVisible(false);
 			}

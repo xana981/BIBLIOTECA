@@ -26,6 +26,7 @@ public class LoginView {
 	
 	public LoginView() {
 		inicialize();
+
 	}
 	
 	private void inicialize() {
@@ -44,28 +45,30 @@ public class LoginView {
 	
 		JComboBox comboTrabajador = new JComboBox();
 		comboTrabajador.setBounds(22, 64, 215, 27);
-		comboTrabajador.setToolTipText("Trabajador");
+		comboTrabajador.setToolTipText("");
 		comboTrabajador.setMaximumRowCount(15);
 		comboTrabajador.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		comboTrabajador.setEditable(true);
+		
 		frmLogin.getContentPane().add(comboTrabajador);
 		
-		JButton btnLogin = new JButton("Entrar"); //Cuando se pulsa sobre el botón "Login" se abre BibliotecaView
-		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BibliotecaView biblioteca = new BibliotecaView();	//creo biblioteca y va invocar al constructor
-				frmLogin.setVisible(false);	
-			}
-		});
+		// Creacion del JComboBox y añadir los items.
+		comboTrabajador.addItem(" ");
+		comboTrabajador.addItem("Trabajador 1");
+		comboTrabajador.addItem("Trabajador 2");
+		comboTrabajador.addItem("Trabajador 3");	
 		
-		btnLogin.setBounds(78, 143, 87, 26);
-		frmLogin.getContentPane().add(btnLogin);
+		JLabel lblLogin = new JLabel("Login");
+		lblLogin.setForeground(new Color(255, 128, 192));
+		lblLogin.setFont(new Font("Times New Roman", Font.BOLD, 28));
+		lblLogin.setBounds(91, 13, 71, 40);
+		frmLogin.getContentPane().add(lblLogin);
+	
 		
-
 		passwordFieldContra = new JPasswordField();
 		passwordFieldContra.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		passwordFieldContra.setBounds(51, 104, 134, 25);
+		char[] entracontra = passwordFieldContra.getPassword();
 		frmLogin.getContentPane().add(passwordFieldContra);
 		
 		JButton btnVerContra = new JButton("");
@@ -83,15 +86,42 @@ public class LoginView {
 		btnVerContra.setBounds(195, 104, 25, 25);
 		frmLogin.getContentPane().add(btnVerContra);
 		
-		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setForeground(new Color(255, 128, 192));
-		lblLogin.setFont(new Font("Times New Roman", Font.BOLD, 28));
-		lblLogin.setBounds(91, 13, 71, 40);
-		frmLogin.getContentPane().add(lblLogin);
+		JButton btnLogin = new JButton("Entrar"); //Cuando se pulsa sobre el botón "Login" se comprueba contraseña y si es correcta abre BibliotecaView, sino IncorrectaView
+		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ComprobarContra(entracontra) == true)
+				{
+					BibliotecaView biblioteca = new BibliotecaView();	 //Cambio a la pantalla Biblioteca
+					frmLogin.setVisible(false);
+				}
+				else
+				{
+					passwordFieldContra.setText(null);
+					IncorrectaView incorrecto = new IncorrectaView();	 //Cambio a la pantalla Incorrecta
+				}
+			}
+		});
 		
+		btnLogin.setBounds(78, 143, 87, 26);
+		frmLogin.getContentPane().add(btnLogin);
 		
-	
-	
-	
+	}
+	public static boolean ComprobarContra(char[]entracontra)
+	{
+		char[]contracorrecta = new char[] {'1','2','3','4'};
+		if (entracontra.length != contracorrecta.length)
+			return false;
+		else
+			return true;			
+			/*for (int i=0; i < entracontra.length; i++)
+			{
+				if (entracontra[i] != contracorrecta[i])
+				{	
+					return true;
+				}	
+			}*/
+
+		
 	}
 }

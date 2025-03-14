@@ -65,7 +65,6 @@ public class SwingMain {
 		btnNewButton.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { //evento de pulsar el boton y me abre la vista
 				LoginView login = new LoginView();	//creo login y va invocar al constructor LoginView
-				
 			} 
 		});
 		frame.getContentPane().add(btnNewButton, BorderLayout.CENTER);
