@@ -1,4 +1,5 @@
 package biblioteca.demo.run;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -13,20 +14,22 @@ import java.awt.event.WindowEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-
 import java.awt.TextField;
-
 import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
 
 import biblioteca.demo.run.*;
 import java.awt.Dimension;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PrestamoView {
 	
 	protected JFrame frmPrestamo;
 	private JTable tablePrestados;
+	private JTextField textFieldSocio;
 	
 	public PrestamoView() {
 		inicialize();
@@ -58,7 +61,7 @@ public class PrestamoView {
 		
 		JLabel lblPrestamoDevolucion = new JLabel(" PRÉSTAMO / DEVOLUCIÓN");
 		lblPrestamoDevolucion.setBounds(223, 11, 405, 40);
-		lblPrestamoDevolucion.setForeground(new Color(0, 0, 255));
+		lblPrestamoDevolucion.setForeground(new Color(255, 128, 192));
 		lblPrestamoDevolucion.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmPrestamo.getContentPane().add(lblPrestamoDevolucion);
 		frmPrestamo.getContentPane().add(btnPrestamo);
@@ -103,11 +106,19 @@ public class PrestamoView {
 		txtpnIntroducirSocio.setBounds(10, 62, 132, 27);
 		frmPrestamo.getContentPane().add(txtpnIntroducirSocio);
 		
-		TextField textFieldSocio = new TextField();
-		textFieldSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldSocio.setText("< Introduce el nº >");
-		textFieldSocio.setBounds(148, 62, 174, 27);
-		frmPrestamo.getContentPane().add(textFieldSocio);
+		/*TextField textFieldSocios = new TextField();// CAMBIO
+		textFieldSocios.setForeground(Color.GRAY);
+		textFieldSocios.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldSocios.setText("< Introduce el nº >");	
+		textFieldSocios.setBounds(148, 62, 174, 27);
+		textFieldSocios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldSocios.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
+				textFieldSocios.setForeground(Color.BLACK);//Cambiar el color de la letra
+			}
+		});
+
+		frmPrestamo.getContentPane().add(textFieldSocios);*/
 		
 		JTextPane txtpnNombreApellidos = new JTextPane();
 		txtpnNombreApellidos.setBackground(SystemColor.menu);
@@ -178,25 +189,23 @@ public class PrestamoView {
 		frmPrestamo.getContentPane().add(rdbtn30);
 		
 		
-		rdbtn15.addActionListener(new ActionListener() {
+		rdbtn15.addActionListener(new ActionListener() { //Si se toca "15 dias", se desactiva "30 dias"
 			public void actionPerformed(ActionEvent e) {
 				rdbtn30.setSelected(false);
 			}
 		});
 		
-		rdbtn30.addActionListener(new ActionListener() {
+		rdbtn30.addActionListener(new ActionListener() {//Si se toca "30 dias", se desactiva "15 dias"
 			public void actionPerformed(ActionEvent e) {
 				rdbtn15.setSelected(false);
 			}
 		});
 		
 		
-		
-		
 		JButton btnAtras = new JButton("Atrás");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla
+				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio a la pantalla Biblioteca de nuevo
 				frmPrestamo.setVisible(false);
 			}
 		});
@@ -217,5 +226,21 @@ public class PrestamoView {
 		btnDevolucion.setBackground(new Color(255, 192, 203));
 		btnDevolucion.setBounds(498, 360, 226, 51);
 		frmPrestamo.getContentPane().add(btnDevolucion);
+		
+		textFieldSocio = new JTextField();
+		textFieldSocio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		textFieldSocio.setText("<Introducir nº socio>");
+		textFieldSocio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
+				textFieldSocio.setForeground(Color.BLACK);//Cambiar el color de la letra
+			}
+		});
+
+		textFieldSocio.setForeground(Color.GRAY);
+		textFieldSocio.setBounds(147, 62, 149, 21);
+		frmPrestamo.getContentPane().add(textFieldSocio);
+		textFieldSocio.setColumns(10);
 	}
 }

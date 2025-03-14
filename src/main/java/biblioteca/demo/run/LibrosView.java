@@ -18,6 +18,9 @@ import javax.swing.JTextPane;
 import java.awt.TextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class LibrosView {
 	
@@ -39,22 +42,17 @@ public class LibrosView {
 		});
 		frmLibro.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		
-		JButton btnCambioLibro = new JButton("Confirmar cambios");
+		JButton btnCambioLibro = new JButton("Confirmar cambios"); //Boton confirmar cambios
 		btnCambioLibro.setBackground(new Color(255, 192, 203));
-		btnCambioLibro.setBounds(376, 174, 207, 51);
+		btnCambioLibro.setBounds(391, 174, 207, 51);
 		btnCambioLibro.setForeground(new Color(0, 0, 0));
 		btnCambioLibro.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnCambioLibro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ConfirmarView confirmar = new ConfirmarView();	 //Activa la pantalla Confirmar				
-			}
-			
-		});
+
 		frmLibro.getContentPane().setLayout(null);
 		
 		JLabel lblLibro = new JLabel("LIBRO");
 		lblLibro.setBounds(267, 11, 99, 40);
-		lblLibro.setForeground(new Color(0, 0, 255));
+		lblLibro.setForeground(new Color(255, 128, 192));
 		lblLibro.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmLibro.getContentPane().add(lblLibro);
 		frmLibro.getContentPane().add(btnCambioLibro);
@@ -90,6 +88,8 @@ public class LibrosView {
 		tableLibro.getColumnModel().getColumn(3).setPreferredWidth(70);
 		scrollPaneLibro.setViewportView(tableLibro);
 
+		// Cuadros de texto con las celdas		
+		
 		TextField textFieldTitulo = new TextField();
 		textFieldTitulo.setEditable(false);
 		textFieldTitulo.setText("Titulo del libro");
@@ -133,12 +133,22 @@ public class LibrosView {
 		frmLibro.getContentPane().add(txtpnIntroducirLibro);
 		
 		TextField textFieldLibro = new TextField();
+
 		textFieldLibro.setForeground(Color.GRAY);
 		textFieldLibro.setBackground(Color.WHITE);
 		textFieldLibro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		textFieldLibro.setText("< Introduce el isbn >");
 		textFieldLibro.setBounds(107, 62, 174, 21);
 		frmLibro.getContentPane().add(textFieldLibro);
+		
+		textFieldLibro.addMouseListener(new MouseAdapter() { //Cuando se entra en el cuadro 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldLibro.setText(null);   //Borra el contenido del cuadro
+				textFieldLibro.setForeground(Color.BLACK); //Cambia de color la letra
+			}
+		});
+		
 		
 		JTextPane txtpnTitulo = new JTextPane();
 		txtpnTitulo.setBackground(SystemColor.menu);
@@ -176,11 +186,37 @@ public class LibrosView {
 		frmLibro.getContentPane().add(txtpnCategoria);
 		
 		
-		JButton btnAñadirNuevo = new JButton("Añadir nuevo");
+		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Boton AÑADIR NUEVO
+		btnAñadirNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldLibro.setText(null);   //Borra el contenido del cuadro
+				textFieldLibro.setForeground(Color.BLACK);//Cambia de color la letra
+								
+				textFieldTitulo.setText(null);
+				textFieldTitulo.setEditable(true);
+				textFieldTitulo.setForeground(Color.BLACK);
+				textFieldTitulo.setBackground(Color.WHITE);
+				
+				textFieldAutor.setText(null);
+				textFieldAutor.setEditable(true);
+				textFieldAutor.setForeground(Color.BLACK);
+				textFieldAutor.setBackground(Color.WHITE);
+				
+				textFieldEdicion.setText(null);
+				textFieldEdicion.setEditable(true);
+				textFieldEdicion.setForeground(Color.BLACK);
+				textFieldEdicion.setBackground(Color.WHITE);
+				
+				textFieldCategoria.setText(null);
+				textFieldCategoria.setEditable(true);
+				textFieldCategoria.setForeground(Color.BLACK);
+				textFieldCategoria.setBackground(Color.WHITE);
+			}
+		});
 		btnAñadirNuevo.setForeground(Color.BLACK);
 		btnAñadirNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnAñadirNuevo.setBackground(new Color(255, 192, 203));
-		btnAñadirNuevo.setBounds(376, 112, 207, 51);
+		btnAñadirNuevo.setBounds(391, 112, 207, 51);
 		frmLibro.getContentPane().add(btnAñadirNuevo);
 		
 		JButton btnEliminar = new JButton("Eliminar");
@@ -192,63 +228,94 @@ public class LibrosView {
 		btnEliminar.setForeground(Color.BLACK);
 		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnEliminar.setBackground(new Color(255, 192, 203));
-		btnEliminar.setBounds(376, 236, 207, 51);
+		btnEliminar.setBounds(391, 236, 207, 51);
 		frmLibro.getContentPane().add(btnEliminar);
 		
-		JButton btnModificarTitulo = new JButton("Modificar");
+		JButton btnModificarTitulo = new JButton("");
+		btnModificarTitulo.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
 		btnModificarTitulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldTitulo.setEditable(true);
+				textFieldTitulo.setForeground(Color.BLACK);
 			}
 		});
 		btnModificarTitulo.setForeground(Color.RED);
-		btnModificarTitulo.setBounds(65, 100, 89, 23);
+		btnModificarTitulo.setBounds(65, 100, 22, 22);
 		frmLibro.getContentPane().add(btnModificarTitulo);
 		
-		JButton btnAutor = new JButton("Modificar");
+		JButton btnAutor = new JButton("");
+		btnAutor.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
 		btnAutor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldAutor.setEditable(true);
+				textFieldAutor.setForeground(Color.BLACK);
 			}
 		});
 		btnAutor.setForeground(Color.RED);
-		btnAutor.setBounds(65, 159, 89, 23);
+		btnAutor.setBounds(65, 159, 22, 22);
 		frmLibro.getContentPane().add(btnAutor);
 		
-		JButton btnEdicion = new JButton("Modificar");
+		JButton btnEdicion = new JButton("");
+		btnEdicion.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
 		btnEdicion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldEdicion.setEditable(true);
+				textFieldEdicion.setForeground(Color.BLACK);
 			}
 		});
 		btnEdicion.setForeground(Color.RED);
-		btnEdicion.setBounds(93, 219, 89, 23);
+		btnEdicion.setBounds(93, 219, 22, 22);
 		frmLibro.getContentPane().add(btnEdicion);
 		
-		JButton btnCategoria = new JButton("Modificar");
+		JButton btnCategoria = new JButton("");
+		btnCategoria.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
 		btnCategoria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldCategoria.setEditable(true);
+				textFieldCategoria.setForeground(Color.BLACK);
 			}
 		});
 		btnCategoria.setForeground(Color.RED);
-		btnCategoria.setBounds(78, 277, 89, 23);
+		btnCategoria.setBounds(78, 277, 22, 22);
 		frmLibro.getContentPane().add(btnCategoria);
 		
-		JButton btnAtras = new JButton("Atrás");
+		btnCambioLibro.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
+			public void actionPerformed(ActionEvent e) {
+				textFieldLibro.setForeground(Color.GRAY);
+				
+				textFieldTitulo.setEditable(false); //Editable NO
+				textFieldTitulo.setForeground(Color.GRAY);//Cambiar el color de la letra			
+				textFieldTitulo.setBackground(new Color(233, 233, 233));
+				
+				textFieldAutor.setEditable(false); 
+				textFieldAutor.setForeground(Color.GRAY);
+				textFieldAutor.setBackground(new Color(233, 233, 233));
+				
+				textFieldEdicion.setEditable(false);
+				textFieldEdicion.setForeground(Color.GRAY);
+				textFieldEdicion.setBackground(new Color(233, 233, 233));
+				
+				textFieldCategoria.setEditable(false);
+				textFieldCategoria.setForeground(Color.GRAY);
+				textFieldCategoria.setBackground(new Color(233, 233, 233));
+			}
+			
+		});
+		
+		JButton btnAtras = new JButton("Atrás"); //BOTON ATRAS
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla
 				frmLibro.setVisible(false);	
 			}
 		});
+		
+
 		btnAtras.setForeground(Color.BLACK);
 		btnAtras.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 76, 27);
 		frmLibro.getContentPane().add(btnAtras);
-		
-
 		
 		
 		frmLibro.setVisible(true);

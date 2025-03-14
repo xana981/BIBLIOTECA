@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import biblioteca.demo.run.BibliotecaView;
+import biblioteca.demo.run.LoginView;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -60,11 +60,11 @@ public class SwingMain {
 		frame.setBounds(0, 0, 287, 185);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		
-		JButton btnNewButton = new JButton("ACCEDER A BIBLIOTECA");
+		JButton btnNewButton = new JButton("ACCEDER AL LOGIN");
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { //evento de pulsar el boton y me abre la vista
-				BibliotecaView biblioteca = new BibliotecaView();	//creo biblioteca y va invocar al constructor
+				LoginView login = new LoginView();	//creo login y va invocar al constructor LoginView
 				
 			} 
 		});
