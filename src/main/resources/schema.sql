@@ -2,39 +2,35 @@
 --(en este caso en cada aplicacion se usa solo una tabla, por lo que no hace falta)
 
 --Para giis.demo.tkrun:
-drop table pedido;
-drop table articulo;
-drop table contenedor;
-drop table articuloPedido;
+drop table Libro;
+drop table Socio;
+drop table Prestamo;
 
-
-CREATE TABLE "contenedor" (
-	"idContenedor"	INTEGER NOT NULL,
-	"capacidad"	INTEGER NOT NULL,
-	"categoria"	TEXT NOT NULL,
-	PRIMARY KEY("idContenedor")
+CREATE TABLE "Libro" (
+	"ISBN"	INTEGER NOT NULL,
+	"titulo" TEXT NOT NULL,
+	"autor"	TEXT NOT NULL,
+	"añoEdicion" INTEGER NOT NULL,
+	"categoria"	INTEGER NOT NULL,
+	PRIMARY KEY("ISBN")
 );
 
-CREATE TABLE "articuloPedido" (
-	"articulo"	INTEGER NOT NULL,
-	"pedido"	INTEGER NOT NULL,
-	PRIMARY KEY("articulo","pedido"),
-	FOREIGN KEY("articulo") REFERENCES "producto"("idProducto")
+CREATE TABLE "Socio" (
+	"numSocio"	INTEGER NOT NULL,
+	"nombreCompleto" TEXT NOT NULL,
+	"esTrabajador" INTEGER NOT NULL,
+	"fechaNac" INTEGER NOT NULL,
+	"masInfo" TEXT,
+	PRIMARY KEY("numSocio")
 );
 
-CREATE TABLE "pedido" (
-	"idPedido"	INTEGER NOT NULL,
-	"numArticulos"	INTEGER NOT NULL,
-	PRIMARY KEY("idPedido" AUTOINCREMENT)
+CREATE TABLE "Prestamo" (
+	"libro"	INTEGER NOT NULL,
+	"socio"	INTEGER NOT NULL,
+	"fechaPrestamo"	INTEGER NOT NULL,
+	"fechaDevolucion" INTEGER,
+	PRIMARY KEY("socio","libro"),
+	FOREIGN KEY("libro") REFERENCES "Libro"("ISBN"),
+	FOREIGN KEY("socio") REFERENCES "Socio"("numSocio")
 );
-
-CREATE TABLE "articulo" (
-	"idArticulo"	INTEGER NOT NULL,
-	"volumen"	REAL NOT NULL,
-	"nombre"	TEXT NOT NULL,
-	"categoria"	TEXT NOT NULL,
-	PRIMARY KEY("idArticulo")
-);
-
-
 

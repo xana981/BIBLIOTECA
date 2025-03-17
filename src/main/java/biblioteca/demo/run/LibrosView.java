@@ -133,6 +133,11 @@ public class LibrosView {
 		frmLibro.getContentPane().add(txtpnIntroducirLibro);
 		
 		TextField textFieldLibro = new TextField();
+		textFieldLibro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
 		textFieldLibro.setForeground(Color.GRAY);
 		textFieldLibro.setBackground(Color.WHITE);
