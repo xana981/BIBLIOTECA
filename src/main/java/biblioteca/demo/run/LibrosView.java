@@ -8,7 +8,14 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.Color;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.*;
 import javax.swing.JLabel;
+
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -57,6 +64,22 @@ public class LibrosView {
 		frmLibro.getContentPane().add(lblLibro);
 		frmLibro.getContentPane().add(btnCambioLibro);
 		
+		JTextPane textPaneLibro = new JTextPane();
+		textPaneLibro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {//*********
+				textPaneLibro.setText(null);   //Borra el contenido del cuadro
+				textPaneLibro.setForeground(Color.BLACK); //Cambia de color la letra
+				
+				String libroElegido = textPaneLibro.getText();
+			}
+		});
+		textPaneLibro.setText("< Introduce el isbn >");
+		textPaneLibro.setForeground(Color.GRAY);
+		textPaneLibro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		textPaneLibro.setBounds(103, 62, 142, 27);
+		frmLibro.getContentPane().add(textPaneLibro);
+		
 		JScrollPane scrollPaneLibro = new JScrollPane();
 		scrollPaneLibro.setToolTipText("");
 		scrollPaneLibro.setBounds(20, 373, 592, 51);
@@ -90,7 +113,7 @@ public class LibrosView {
 
 		// Cuadros de texto con las celdas		
 		
-		TextField textFieldTitulo = new TextField();
+		TextField textFieldTitulo = new TextField();   //********************
 		textFieldTitulo.setEditable(false);
 		textFieldTitulo.setText("Titulo del libro");
 		textFieldTitulo.setForeground(Color.GRAY);
@@ -125,34 +148,95 @@ public class LibrosView {
 		textFieldCategoria.setBackground(new Color(233, 233, 233));
 		textFieldCategoria.setBounds(20, 306, 147, 21);
 		frmLibro.getContentPane().add(textFieldCategoria);
+		
 		JTextPane txtpnIntroducirLibro = new JTextPane();
 		txtpnIntroducirLibro.setBackground(SystemColor.menu);
 		txtpnIntroducirLibro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnIntroducirLibro.setText("Introducir isbn");
 		txtpnIntroducirLibro.setBounds(10, 62, 91, 27);
 		frmLibro.getContentPane().add(txtpnIntroducirLibro);
+			
 		
-		TextField textFieldLibro = new TextField();
-		textFieldLibro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		 try { //Titulo
+	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
+	            Statement statement = connection.createStatement();
+	            ResultSet resultSet = statement.executeQuery("SELECT Titulo FROM Libro WHERE ISBN == 'libroElegido'");
+	            
+	            if (resultSet.next()) {
+	                String data = resultSet.getString("Titulo");
+	                textFieldTitulo.setText(data); // Establecer el texto del TextField para Titulo
+	            }
 
-		textFieldLibro.setForeground(Color.GRAY);
-		textFieldLibro.setBackground(Color.WHITE);
-		textFieldLibro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldLibro.setText("< Introduce el isbn >");
-		textFieldLibro.setBounds(107, 62, 174, 21);
-		frmLibro.getContentPane().add(textFieldLibro);
+	            // Cerrar la conexión
+	            resultSet.close();
+	            statement.close();
+	            connection.close();
+	     } 
+		 catch (Exception e) {
+			 e.printStackTrace();
+	     }
+	    
+		 try { //Autor
+	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
+	            Statement statement = connection.createStatement();
+	            ResultSet resultSet = statement.executeQuery("SELECT Autor FROM Libro WHERE ISBN == '100259'");
+	       	            
+	            if (resultSet.next()) {
+	                String data = resultSet.getString("Autor");
+	                textFieldAutor.setText(data); // Establecer el texto del TextField para Autor
+	            }
+
+	            // Cerrar la conexión
+	            resultSet.close();         
+	            statement.close();
+	            connection.close();
+	     } 
+		 catch (Exception e) {
+			 e.printStackTrace();
+	     }
 		
-		textFieldLibro.addMouseListener(new MouseAdapter() { //Cuando se entra en el cuadro 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textFieldLibro.setText(null);   //Borra el contenido del cuadro
-				textFieldLibro.setForeground(Color.BLACK); //Cambia de color la letra
-			}
-		});
+		 try { //Año edicion
+	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
+	            Statement statement = connection.createStatement();
+	            ResultSet resultSet = statement.executeQuery("SELECT añoEdicion FROM Libro WHERE ISBN == '100259'");
+	       	            
+	            if (resultSet.next()) {
+	                String data = resultSet.getString("añoEdicion");
+	                textFieldEdicion.setText(data); // Establecer el texto del TextField para Edicion
+	            }
+
+	            // Cerrar la conexión
+	            resultSet.close();         
+	            statement.close();
+	            connection.close();
+	     } 
+		 catch (Exception e) {
+			 e.printStackTrace();
+	     }
+		
+		 try { //Año categoria
+	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
+	            Statement statement = connection.createStatement();
+	            ResultSet resultSet = statement.executeQuery("SELECT categoria FROM Libro WHERE ISBN == '195715'");
+	       	            
+	            if (resultSet.next()) {
+	                String data = resultSet.getString("categoria");
+	                if (data.equals("0")) {
+	                	textFieldCategoria.setText("Adulto"); // Establecer el texto del TextField para Categoria
+	                }
+	                else if (data.equals("1")) {
+	                	textFieldCategoria.setText("Infantil");
+	                }
+	            }
+
+	            // Cerrar la conexión
+	            resultSet.close();         
+	            statement.close();
+	            connection.close();
+	     } 
+		 catch (Exception e) {
+			 e.printStackTrace();
+	     }
 		
 		
 		JTextPane txtpnTitulo = new JTextPane();
@@ -194,8 +278,8 @@ public class LibrosView {
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Boton AÑADIR NUEVO
 		btnAñadirNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldLibro.setText(null);   //Borra el contenido del cuadro
-				textFieldLibro.setForeground(Color.BLACK);//Cambia de color la letra
+				textPaneLibro.setText(null);   //Borra el contenido del cuadro
+				textPaneLibro.setForeground(Color.BLACK);//Cambia de color la letra
 								
 				textFieldTitulo.setText(null);
 				textFieldTitulo.setEditable(true);
@@ -286,7 +370,6 @@ public class LibrosView {
 		
 		btnCambioLibro.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
 			public void actionPerformed(ActionEvent e) {
-				textFieldLibro.setForeground(Color.GRAY);
 				
 				textFieldTitulo.setEditable(false); //Editable NO
 				textFieldTitulo.setForeground(Color.GRAY);//Cambiar el color de la letra			
@@ -321,6 +404,16 @@ public class LibrosView {
 		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 76, 27);
 		frmLibro.getContentPane().add(btnAtras);
+		
+		JComboBox comboIsbnLibros = new JComboBox();
+		comboIsbnLibros.setToolTipText("Introduce el isbn");
+		comboIsbnLibros.setMaximumRowCount(15);
+		comboIsbnLibros.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		comboIsbnLibros.setEditable(true);
+		comboIsbnLibros.setBounds(288, 62, 324, 27);
+		frmLibro.getContentPane().add(comboIsbnLibros);
+		
+
 		
 		
 		frmLibro.setVisible(true);

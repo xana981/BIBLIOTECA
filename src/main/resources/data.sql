@@ -19,6 +19,8 @@ INSERT INTO Libro(ISBN,titulo,autor,añoEdicion,categoria) VALUES    /* Categori
 (195932,"Bajo el asfalto, la flor","Monica Rodriguez",2002,1),
 (195297,"Ha nacido una isla","Aladjidi Virginie",1999,1),
 (195715,"Monstruo azul","Horcek Petr",2003,1),
+(100548,"El hundimiento","Manuel Vilaw",2015,0),
+(110812,"Cien noches","Luis Martin",2005,0),
 (196452,"Yo, Tarzanne","Festuc Teatre",2005,1);
 
 INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES  /* esTrabajador 0: No, esTrabajador 0: Si */

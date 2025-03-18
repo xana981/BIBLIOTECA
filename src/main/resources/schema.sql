@@ -8,10 +8,10 @@ drop table Prestamo;
 
 CREATE TABLE "Libro" (
 	"ISBN"	INTEGER NOT NULL,
-	"titulo" TEXT NOT NULL,
+	"titulo"	TEXT NOT NULL,
 	"autor"	TEXT NOT NULL,
-	"añoEdicion" INTEGER NOT NULL,
-	"categoria"	INTEGER NOT NULL,
+	"añoEdicion"	INTEGER NOT NULL,
+	"categoria"	BLOB NOT NULL,
 	PRIMARY KEY("ISBN")
 );
 
