@@ -70,8 +70,7 @@ public class LibrosView {
 			public void mouseClicked(MouseEvent e) {//*********
 				textPaneLibro.setText(null);   //Borra el contenido del cuadro
 				textPaneLibro.setForeground(Color.BLACK); //Cambia de color la letra
-				
-				String libroElegido = textPaneLibro.getText();
+					
 			}
 		});
 		textPaneLibro.setText("< Introduce el isbn >");
@@ -156,11 +155,60 @@ public class LibrosView {
 		txtpnIntroducirLibro.setBounds(10, 62, 91, 27);
 		frmLibro.getContentPane().add(txtpnIntroducirLibro);
 			
+
+		
+		JTextPane txtpnTitulo = new JTextPane();
+		txtpnTitulo.setBackground(SystemColor.menu);
+		txtpnTitulo.setText("Título");
+		txtpnTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnTitulo.setBounds(10, 99, 45, 21);
+		frmLibro.getContentPane().add(txtpnTitulo);
+		
+		JTextPane txtpnPrestado = new JTextPane();
+		txtpnPrestado.setText("Está prestado");
+		txtpnPrestado.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnPrestado.setBackground(SystemColor.menu);
+		txtpnPrestado.setBounds(17, 341, 264, 21);
+		frmLibro.getContentPane().add(txtpnPrestado);
+		
+		JTextPane txtpnEdicion = new JTextPane();
+		txtpnEdicion.setText("Año Edición");
+		txtpnEdicion.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnEdicion.setBackground(SystemColor.menu);
+		txtpnEdicion.setBounds(10, 219, 76, 21);
+		frmLibro.getContentPane().add(txtpnEdicion);
+		
+		JTextPane txtpnAutor = new JTextPane();
+		txtpnAutor.setText("Autor");
+		txtpnAutor.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnAutor.setBackground(SystemColor.menu);
+		txtpnAutor.setBounds(10, 159, 45, 21);
+		frmLibro.getContentPane().add(txtpnAutor);
+		
+		JTextPane txtpnCategoria = new JTextPane();
+		txtpnCategoria.setText("Categoria");
+		txtpnCategoria.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnCategoria.setBackground(SystemColor.menu);
+		txtpnCategoria.setBounds(10, 279, 60, 21);
+		frmLibro.getContentPane().add(txtpnCategoria);
+		
+		JButton btnBuscar = new JButton("");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String entrada = textPaneLibro.getText();
+				int libroElegido = Integer.parseInt(entrada);
+			}
+		});
+		btnBuscar.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\buscar.png"));
+		btnBuscar.setBounds(256, 63, 25, 25);
+		frmLibro.getContentPane().add(btnBuscar);
+		
 		
 		 try { //Titulo
 	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
 	            Statement statement = connection.createStatement();
-	            ResultSet resultSet = statement.executeQuery("SELECT Titulo FROM Libro WHERE ISBN == 'libroElegido'");
+	            ResultSet resultSet = statement.executeQuery("SELECT Titulo FROM Libro WHERE ISBN = ?",libroElegido); ///********************************************
 	            
 	            if (resultSet.next()) {
 	                String data = resultSet.getString("Titulo");
@@ -217,7 +265,7 @@ public class LibrosView {
 		 try { //Año categoria
 	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
 	            Statement statement = connection.createStatement();
-	            ResultSet resultSet = statement.executeQuery("SELECT categoria FROM Libro WHERE ISBN == '195715'");
+	            ResultSet resultSet = statement.executeQuery("SELECT categoria FROM Libro WHERE ISBN == '100259'");
 	       	            
 	            if (resultSet.next()) {
 	                String data = resultSet.getString("categoria");
@@ -238,41 +286,6 @@ public class LibrosView {
 			 e.printStackTrace();
 	     }
 		
-		
-		JTextPane txtpnTitulo = new JTextPane();
-		txtpnTitulo.setBackground(SystemColor.menu);
-		txtpnTitulo.setText("Título");
-		txtpnTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnTitulo.setBounds(10, 99, 45, 21);
-		frmLibro.getContentPane().add(txtpnTitulo);
-		
-		JTextPane txtpnPrestado = new JTextPane();
-		txtpnPrestado.setText("Está prestado");
-		txtpnPrestado.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnPrestado.setBackground(SystemColor.menu);
-		txtpnPrestado.setBounds(17, 341, 264, 21);
-		frmLibro.getContentPane().add(txtpnPrestado);
-		
-		JTextPane txtpnEdicion = new JTextPane();
-		txtpnEdicion.setText("Año Edición");
-		txtpnEdicion.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnEdicion.setBackground(SystemColor.menu);
-		txtpnEdicion.setBounds(10, 219, 76, 21);
-		frmLibro.getContentPane().add(txtpnEdicion);
-		
-		JTextPane txtpnAutor = new JTextPane();
-		txtpnAutor.setText("Autor");
-		txtpnAutor.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnAutor.setBackground(SystemColor.menu);
-		txtpnAutor.setBounds(10, 159, 45, 21);
-		frmLibro.getContentPane().add(txtpnAutor);
-		
-		JTextPane txtpnCategoria = new JTextPane();
-		txtpnCategoria.setText("Categoria");
-		txtpnCategoria.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnCategoria.setBackground(SystemColor.menu);
-		txtpnCategoria.setBounds(10, 279, 60, 21);
-		frmLibro.getContentPane().add(txtpnCategoria);
 		
 		
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Boton AÑADIR NUEVO
@@ -412,8 +425,6 @@ public class LibrosView {
 		comboIsbnLibros.setEditable(true);
 		comboIsbnLibros.setBounds(288, 62, 324, 27);
 		frmLibro.getContentPane().add(comboIsbnLibros);
-		
-
 		
 		
 		frmLibro.setVisible(true);
