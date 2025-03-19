@@ -28,17 +28,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 
-public class LibrosView {
+public class LibroView {
 	
 	protected JFrame frmLibro;
 	private JTable tableLibro;
-	private LibrosController controlador;
+	private LibroController controlador;
 	
-	public LibrosView(LibrosController c) {
+	public LibroView(LibroController c) {
 		inicialize(c);
 	}
 	
-	private void inicialize(LibrosController c) {
+	private void inicialize(LibroController c) {
 		
 		frmLibro = new JFrame();
 		frmLibro.setSize(new Dimension(650, 480));

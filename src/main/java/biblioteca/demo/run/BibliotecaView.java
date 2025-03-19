@@ -63,8 +63,8 @@ public class BibliotecaView {
 		btnLibro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmBiblioteca.setVisible(false);
-				LibrosController controlador = new LibrosController();
-				controlador.setVistaModel(new LibrosView(controlador), new LibrosModel());
+				LibroController controlador = new LibroController();
+				controlador.setVistaModel(new LibroView(controlador), new LibroModel());
 			}
 		});
 		frmBiblioteca.getContentPane().add(btnLibro);
