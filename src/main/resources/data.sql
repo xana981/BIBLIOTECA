@@ -21,9 +21,10 @@ INSERT INTO Libro(ISBN,titulo,autor,añoEdicion,categoria) VALUES    /* Categori
 (195715,"Monstruo azul","Horcek Petr",2003,1),
 (100548,"El hundimiento","Manuel Vilaw",2015,0),
 (110812,"Cien noches","Luis Martin",2005,0),
-(196452,"Yo, Tarzanne","Festuc Teatre",2005,1);
+(196452,"Yo, Tarzanne","Festuc Teatre",2005,1),
+(184957,"La regenta","Benito Perez Galdos",2015,0);
 
-INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES  /* esTrabajador 0: No, esTrabajador 0: Si */
+INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES  /* esTrabajador 0: No, esTrabajador 1: Si */
 (53545473,"Veronica Gallo",0,'10-07-1991',"Tlfno: 985147896"),
 (71658965,"Carmen Martinez",0,'19-08-1999',"Tlfno: 985584628"),
 (10259341,"Jose Gomez",1,'23-02-1959',"Tlfno: 985481526"),
@@ -33,6 +34,7 @@ INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES 
 (10592212,"Rocio Gonzalez",0,'13-05-1971',"Tlfno: 985217854"),
 (71954823,"Mario Rodriguez",0,'15-10-1978',"Tlfno: 985954321"),
 (52148221,"Antonio Cordoba",0,'16-07-2015',"Tlfno: 985846257"),
+(10625076,"Javier Fernandez",0,'15-03-1954',"Tlfno: 984215944"),
 (09452214,"Romina Perez",0,'21-09-1968',"Tlfno: 985845789");
 
 INSERT INTO Prestamo(libro,socio,fechaPrestamo,fechaDevolucion) VALUES 

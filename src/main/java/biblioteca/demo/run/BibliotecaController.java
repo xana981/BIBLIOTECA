@@ -3,12 +3,18 @@ package biblioteca.demo.run;
 import java.util.List;
 import biblioteca.demo.run.BibliotecaModel;
 import biblioteca.demo.run.BibliotecaView;
-
+/*import biblioteca.demo.run.PrestamoView;
+import biblioteca.demo.run.SocioView;
+import biblioteca.demo.run.LibroView;*/
 
 public class BibliotecaController {
 	
 	private BibliotecaModel model;
 	private BibliotecaView view;
+	
+/*	private PrestamoView view;
+	private LibroView view;
+	private SocioView view;*/
 	
 	public void setVistaModel(BibliotecaView v , BibliotecaModel m) {
 		this.model = m;
@@ -37,4 +43,23 @@ public class BibliotecaController {
 	public void setModel(BibliotecaModel model) {
 		this.model = model;
 	}
+	
+	
+/*	public PrestamoView getView() {
+		return view;
+	}
+
+	public void setView(PrestamoView view) {
+		this.view = view;
+	}
+
+	public BibliotecaModel getModel() {
+		return model;
+	}
+
+	public void setModel(BibliotecaModel model) {
+		this.model = model;
+	}*/
 }
+
+

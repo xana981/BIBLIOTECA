@@ -48,9 +48,10 @@ public class BibliotecaView {
 		btnBiblioteca.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnBiblioteca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmBiblioteca.setVisible(false);
+				
 				PrestamoController controlador = new PrestamoController();
-				controlador.setVistaModel(new PrestamoView(controlador), new PrestamoModel());
+				controlador.setVistaModel(new PrestamoView(controlador), new PrestamoModel());  
+				frmBiblioteca.setVisible(false);
 			}
 		});
 		frmBiblioteca.getContentPane().add(btnBiblioteca);

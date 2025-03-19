@@ -60,6 +60,7 @@ public class SwingMain {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setSize(new Dimension(600, 200));
+		frame.setLocationRelativeTo(null);
 		frame.setTitle("Main");
 		frame.setBounds(0, 0, 287, 185);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

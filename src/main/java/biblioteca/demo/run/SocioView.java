@@ -132,19 +132,20 @@ public class SocioView {
 		txtpnIntroducirSocio.setText("Introducir nº de socio");
 		frmSocio.getContentPane().add(txtpnIntroducirSocio);
 		
-		TextField textFieldSocio = new TextField(); 
-		textFieldSocio.addMouseListener(new MouseAdapter() {
+		JTextPane textPaneSocio = new JTextPane();
+		textPaneSocio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textFieldSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
-				textFieldSocio.setForeground(Color.BLACK);//Cambiar el color de la letra
+				textPaneSocio.setForeground(Color.BLACK);//Cambiar el color de la letra			
+				textPaneSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
+
 			}
 		});
-		textFieldSocio.setForeground(Color.GRAY);
-		textFieldSocio.setBounds(148, 78, 174, 21);
-		textFieldSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldSocio.setText("< Introduce el nº >");
-		frmSocio.getContentPane().add(textFieldSocio);
+		textPaneSocio.setText("< Introduce nº socio >");
+		textPaneSocio.setForeground(Color.GRAY);
+		textPaneSocio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		textPaneSocio.setBounds(145, 77, 142, 27);
+		frmSocio.getContentPane().add(textPaneSocio);
 		
 		
 		JTextPane txtpnNombreApellidos = new JTextPane();
@@ -178,8 +179,8 @@ public class SocioView {
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Se borran los valores y se hace editable para poder grabar
 		btnAñadirNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textFieldSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
-				textFieldSocio.setForeground(Color.BLACK);
+				textPaneSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
+				textPaneSocio.setForeground(Color.BLACK);
 				
 				textFieldNombre.setEditable(true); //Hace el campo editable
 				textFieldNombre.setForeground(Color.BLACK);//Cambiar el color de la letra		
@@ -254,7 +255,7 @@ public class SocioView {
 		
 		btnCambioSocio.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
 			public void actionPerformed(ActionEvent e) {
-				textFieldSocio.setForeground(Color.GRAY);
+				textPaneSocio.setForeground(Color.GRAY);
 				
 				textFieldNombre.setEditable(false);
 				textFieldNombre.setForeground(Color.GRAY);//Cambiar el color de la letra				
@@ -281,6 +282,8 @@ public class SocioView {
 		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 75, 27);
 		frmSocio.getContentPane().add(btnAtras);
+		
+
 
 		
 		frmSocio.setVisible(true);
