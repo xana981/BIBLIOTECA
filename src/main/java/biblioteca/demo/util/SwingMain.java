@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import biblioteca.demo.run.LoginView;
+import biblioteca.demo.run.LoginController;
+import biblioteca.demo.run.LoginModel;
+
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -64,7 +68,8 @@ public class SwingMain {
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { //evento de pulsar el boton y me abre la vista
-				LoginView login = new LoginView();	//creo login y va invocar al constructor LoginView
+				LoginController controlador = new LoginController();
+				controlador.setVistaModel(new LoginView(controlador), new LoginModel());
 			} 
 		});
 		frame.getContentPane().add(btnNewButton, BorderLayout.CENTER);

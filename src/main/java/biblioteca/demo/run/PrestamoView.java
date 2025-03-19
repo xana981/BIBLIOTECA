@@ -14,14 +14,11 @@ import java.awt.event.WindowEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
-import java.awt.TextField;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Label;
 import javax.swing.JComboBox;
 
-import biblioteca.demo.run.*;
 import java.awt.Dimension;
-import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -29,23 +26,30 @@ public class PrestamoView {
 	
 	protected JFrame frmPrestamo;
 	private JTable tablePrestados;
-	private JTextField textFieldSocio;
+	private PrestamoController controlador;
 	
-	public PrestamoView() {
-		inicialize();
+	public PrestamoView(PrestamoController c) {
+		inicialize(c);
 	}
 	
-	private void inicialize() {
+	private void inicialize(PrestamoController c) {
 		
 		frmPrestamo = new JFrame();
 		frmPrestamo.setVisible(true);
 		frmPrestamo.setSize(new Dimension(787, 472));
 		frmPrestamo.setResizable(false);
+		controlador=c;
 		frmPrestamo.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {
 			}
 		});
 		frmPrestamo.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		
+		JLabel lblPrestamoDevolucion = new JLabel(" PRÉSTAMO / DEVOLUCIÓN");
+		lblPrestamoDevolucion.setBounds(223, 11, 405, 40);
+		lblPrestamoDevolucion.setForeground(new Color(255, 128, 192));
+		lblPrestamoDevolucion.setFont(new Font("Times New Roman", Font.BOLD, 28));
+		frmPrestamo.getContentPane().add(lblPrestamoDevolucion);
 		
 		JButton btnPrestamo = new JButton("Confirmar préstamo");
 		btnPrestamo.setBackground(new Color(255, 192, 203));
@@ -58,13 +62,22 @@ public class PrestamoView {
 			}
 		});
 		frmPrestamo.getContentPane().setLayout(null);
-		
-		JLabel lblPrestamoDevolucion = new JLabel(" PRÉSTAMO / DEVOLUCIÓN");
-		lblPrestamoDevolucion.setBounds(223, 11, 405, 40);
-		lblPrestamoDevolucion.setForeground(new Color(255, 128, 192));
-		lblPrestamoDevolucion.setFont(new Font("Times New Roman", Font.BOLD, 28));
-		frmPrestamo.getContentPane().add(lblPrestamoDevolucion);
 		frmPrestamo.getContentPane().add(btnPrestamo);
+		
+		JTextPane textPaneSocio = new JTextPane();
+		textPaneSocio.setForeground(Color.GRAY);
+		textPaneSocio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		textPaneSocio.setText("< Introducir nº de socio >");
+		textPaneSocio.setBounds(152, 61, 156, 27);
+		textPaneSocio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textPaneSocio.setForeground(Color.BLACK);//Cambiar el color de la letra				
+				textPaneSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
+			}
+		});
+		frmPrestamo.getContentPane().add(textPaneSocio);
+		
 		
 		JScrollPane scrollPanePrestados = new JScrollPane();
 		scrollPanePrestados.setToolTipText("");
@@ -105,20 +118,6 @@ public class PrestamoView {
 		txtpnIntroducirSocio.setText("Introducir nº de socio");
 		txtpnIntroducirSocio.setBounds(10, 62, 132, 27);
 		frmPrestamo.getContentPane().add(txtpnIntroducirSocio);
-		
-		/*TextField textFieldSocios = new TextField();// CAMBIO
-		textFieldSocios.setForeground(Color.GRAY);
-		textFieldSocios.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldSocios.setText("< Introduce el nº >");	
-		textFieldSocios.setBounds(148, 62, 174, 27);
-		textFieldSocios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textFieldSocios.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
-				textFieldSocios.setForeground(Color.BLACK);//Cambiar el color de la letra
-			}
-		});
-
-		frmPrestamo.getContentPane().add(textFieldSocios);*/
 		
 		JTextPane txtpnNombreApellidos = new JTextPane();
 		txtpnNombreApellidos.setBackground(SystemColor.menu);
@@ -205,8 +204,9 @@ public class PrestamoView {
 		JButton btnAtras = new JButton("Atrás");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio a la pantalla Biblioteca de nuevo
 				frmPrestamo.setVisible(false);
+				BibliotecaController controlador = new BibliotecaController();
+				controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 			}
 		});
 		btnAtras.setForeground(Color.BLACK);
@@ -227,20 +227,8 @@ public class PrestamoView {
 		btnDevolucion.setBounds(498, 360, 226, 51);
 		frmPrestamo.getContentPane().add(btnDevolucion);
 		
-		textFieldSocio = new JTextField();
-		textFieldSocio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textFieldSocio.setText("<Introducir nº socio>");
-		textFieldSocio.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				textFieldSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
-				textFieldSocio.setForeground(Color.BLACK);//Cambiar el color de la letra
-			}
-		});
 
-		textFieldSocio.setForeground(Color.GRAY);
-		textFieldSocio.setBounds(147, 62, 149, 21);
-		frmPrestamo.getContentPane().add(textFieldSocio);
-		textFieldSocio.setColumns(10);
+
+
 	}
 }

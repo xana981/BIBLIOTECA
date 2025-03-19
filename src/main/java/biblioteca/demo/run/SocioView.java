@@ -21,20 +21,22 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import biblioteca.demo.run.*;
 
-public class SociosView {
+public class SocioView {
 	
 	protected JFrame frmSocio;
 	private JTable tableSocio;
+	private SocioController controlador;
 	
-	public SociosView() {
-		inicialize();
+	public SocioView(SocioController c) {
+		inicialize(c);
 	}
 	
-	private void inicialize() {
+	private void inicialize(SocioController c) {
 		
 		frmSocio = new JFrame();
 		frmSocio.setSize(new Dimension(645, 451));
 		frmSocio.setResizable(false);
+		controlador=c;
 		frmSocio.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {
 			}
@@ -269,8 +271,9 @@ public class SociosView {
 		JButton btnAtras = new JButton("Atrás");  //Boton atrás
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla nuevamente a BibliotecaView
 				frmSocio.setVisible(false);
+				BibliotecaController controlador = new BibliotecaController();
+				controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 			}
 		});
 		btnAtras.setForeground(Color.BLACK);

@@ -21,20 +21,23 @@ public class LoginView {
 	
 	protected JFrame frmLogin;
 	private JPasswordField passwordFieldContra;
+	private LoginController controlador;
 	
-	public LoginView() {
-		inicialize();
+	public LoginView(LoginController c) {
+		inicialize(c);
 
 	}
 	
-	private void inicialize() {
+	private void inicialize(LoginController c) {
 		
 		frmLogin = new JFrame();
 		frmLogin.setSize(new Dimension(286, 229));
 		frmLogin.setResizable(false);
 		frmLogin.setVisible(true);
+		controlador=c;
 		frmLogin.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {
+				
 			}
 		});
 		frmLogin.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -89,18 +92,21 @@ public class LoginView {
 
 				if(usuario.equals("JOSE") && pass.equals("1234"))
 				{
-					BibliotecaView biblioteca = new BibliotecaView();	 //Cambio a la pantalla Biblioteca
-					frmLogin.setVisible(false);
+					frmLogin.setVisible(false);	
+					BibliotecaController controlador = new BibliotecaController();
+					controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 				}
 				else if(usuario.equals("JUAN") && pass.equals("1234"))
 				{
-					BibliotecaView biblioteca = new BibliotecaView();	 //Cambio a la pantalla Biblioteca
 					frmLogin.setVisible(false);
+					BibliotecaController controlador = new BibliotecaController();
+					controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 				}
 				else if(usuario.equals("1") && pass.equals("1"))
 				{
-					BibliotecaView biblioteca = new BibliotecaView();	 //Cambio a la pantalla Biblioteca
 					frmLogin.setVisible(false);
+					BibliotecaController controlador = new BibliotecaController();
+					controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 				}
 				else
 				{

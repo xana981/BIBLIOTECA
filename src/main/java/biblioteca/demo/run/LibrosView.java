@@ -1,6 +1,5 @@
 package biblioteca.demo.run;
 import javax.swing.JFrame;
-import biblioteca.demo.run.BibliotecaView;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,16 +32,18 @@ public class LibrosView {
 	
 	protected JFrame frmLibro;
 	private JTable tableLibro;
+	private LibrosController controlador;
 	
-	public LibrosView() {
-		inicialize();
+	public LibrosView(LibrosController c) {
+		inicialize(c);
 	}
 	
-	private void inicialize() {
+	private void inicialize(LibrosController c) {
 		
 		frmLibro = new JFrame();
 		frmLibro.setSize(new Dimension(650, 480));
 		frmLibro.setResizable(false);
+		controlador=c;
 		frmLibro.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {
 			}
@@ -65,20 +66,20 @@ public class LibrosView {
 		frmLibro.getContentPane().add(btnCambioLibro);
 		
 		JTextPane textPaneLibro = new JTextPane();
-		textPaneLibro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {//*********
-				textPaneLibro.setText(null);   //Borra el contenido del cuadro
-				textPaneLibro.setForeground(Color.BLACK); //Cambia de color la letra
-					
-			}
-		});
 		textPaneLibro.setText("< Introduce el isbn >");
 		textPaneLibro.setForeground(Color.GRAY);
 		textPaneLibro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		textPaneLibro.setBounds(103, 62, 142, 27);
 		frmLibro.getContentPane().add(textPaneLibro);
 		
+		textPaneLibro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textPaneLibro.setForeground(Color.BLACK); //Cambia de color la letra
+				textPaneLibro.setText(null);   //Borra el contenido del cuadro
+			}
+		});
+
 		JScrollPane scrollPaneLibro = new JScrollPane();
 		scrollPaneLibro.setToolTipText("");
 		scrollPaneLibro.setBounds(20, 373, 592, 51);
@@ -154,9 +155,7 @@ public class LibrosView {
 		txtpnIntroducirLibro.setText("Introducir isbn");
 		txtpnIntroducirLibro.setBounds(10, 62, 91, 27);
 		frmLibro.getContentPane().add(txtpnIntroducirLibro);
-			
-
-		
+				
 		JTextPane txtpnTitulo = new JTextPane();
 		txtpnTitulo.setBackground(SystemColor.menu);
 		txtpnTitulo.setText("Título");
@@ -208,7 +207,7 @@ public class LibrosView {
 		 try { //Titulo
 	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
 	            Statement statement = connection.createStatement();
-	            ResultSet resultSet = statement.executeQuery("SELECT Titulo FROM Libro WHERE ISBN = ?",libroElegido); ///********************************************
+	            ResultSet resultSet = statement.executeQuery("SELECT Titulo FROM Libro WHERE ISBN == '100259'");     ///********************************************
 	            
 	            if (resultSet.next()) {
 	                String data = resultSet.getString("Titulo");
@@ -285,8 +284,6 @@ public class LibrosView {
 		 catch (Exception e) {
 			 e.printStackTrace();
 	     }
-		
-		
 		
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Boton AÑADIR NUEVO
 		btnAñadirNuevo.addActionListener(new ActionListener() {
@@ -400,14 +397,14 @@ public class LibrosView {
 				textFieldCategoria.setForeground(Color.GRAY);
 				textFieldCategoria.setBackground(new Color(233, 233, 233));
 			}
-			
 		});
 		
 		JButton btnAtras = new JButton("Atrás"); //BOTON ATRAS
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BibliotecaView biblioteca = new BibliotecaView();	 //Cambio de pantalla
 				frmLibro.setVisible(false);	
+				BibliotecaController controlador = new BibliotecaController();
+				controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 			}
 		});
 		

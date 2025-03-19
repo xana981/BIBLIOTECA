@@ -4,7 +4,7 @@ import java.util.List;
 
 import biblioteca.demo.util.Database;
 
-public class BibliotecaModel {
+public class LibrosModel {
 	
 	Database db = new Database();
 
