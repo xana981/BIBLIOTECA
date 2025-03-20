@@ -17,6 +17,20 @@ public class LibroController {
 		//this.view.getFrame().setVisible(true);
 	}
 
+	public void LibroElegido(int ISBN) {
+		//metodo para rellenar la tabla de articulos y pedidos
+		
+		List<Object[]> lista= null;
+		
+		model.LibroElegido(ISBN);
+		
+		view.getText(TextFieldTitulo).setText.lista.get(0).toString();
+		
+	};
+	
+	
+	
+	
 	public LibroView getView() {
 		return view;
 	}
@@ -33,3 +47,9 @@ public class LibroController {
 		this.model = model;
 	}
 }
+
+
+
+
+
+

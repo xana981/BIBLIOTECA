@@ -34,6 +34,7 @@ public class LoginView {
 		frmLogin.setSize(new Dimension(286, 229));
 		frmLogin.setResizable(false);
 		frmLogin.setVisible(true);
+		frmLogin.setLocationRelativeTo(null);
 		controlador=c;
 		frmLogin.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {

@@ -38,6 +38,7 @@ public class PrestamoView {
 		frmPrestamo.setVisible(true);
 		frmPrestamo.setSize(new Dimension(787, 472));
 		frmPrestamo.setResizable(false);
+		frmPrestamo.setLocationRelativeTo(null);
 		controlador=c;
 		frmPrestamo.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {

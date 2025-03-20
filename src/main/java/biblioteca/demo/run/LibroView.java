@@ -43,6 +43,7 @@ public class LibroView {
 		frmLibro = new JFrame();
 		frmLibro.setSize(new Dimension(650, 480));
 		frmLibro.setResizable(false);
+		frmLibro.setLocationRelativeTo(null);
 		controlador=c;
 		frmLibro.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {
@@ -93,7 +94,7 @@ public class LibroView {
 				{null, null, null, null},
 			},
 			new String[] {
-				"N\u00BA Socio", "Nombre", "Fecha pr\u00E9stamo", "Duraci\u00F3n"
+				"Nro. Socio", "Nombre", "Fecha prestamo", "Duracion"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -195,8 +196,9 @@ public class LibroView {
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String entrada = textPaneLibro.getText();
-				int libroElegido = Integer.parseInt(entrada);
+				controlador.LibroElegido(Integer.parseInt(textPaneLibro.getText()));
+				//String entrada = textPaneLibro.getText();
+				//int libroElegido = Integer.parseInt(entrada);
 			}
 		});
 		btnBuscar.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\buscar.png"));
@@ -204,7 +206,7 @@ public class LibroView {
 		frmLibro.getContentPane().add(btnBuscar);
 		
 		
-		 try { //Titulo
+		 /*try { //Titulo
 	            Connection connection = DriverManager.getConnection("jdbc:sqlite:Biblioteca.db");
 	            Statement statement = connection.createStatement();
 	            ResultSet resultSet = statement.executeQuery("SELECT Titulo FROM Libro WHERE ISBN == '100259'");     ///********************************************
@@ -283,7 +285,7 @@ public class LibroView {
 	     } 
 		 catch (Exception e) {
 			 e.printStackTrace();
-	     }
+	     }*/
 		
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Boton AÑADIR NUEVO
 		btnAñadirNuevo.addActionListener(new ActionListener() {
@@ -425,5 +427,8 @@ public class LibroView {
 		
 		
 		frmLibro.setVisible(true);
+		
+	
 	}
+
 }

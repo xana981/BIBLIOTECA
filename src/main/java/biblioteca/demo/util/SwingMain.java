@@ -17,8 +17,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 
-
-
 /**
  * Punto de entrada principal que incluye botones para la ejecucion de las pantallas 
  * de las aplicaciones de ejemplo
@@ -29,6 +27,7 @@ import java.awt.Font;
 public class SwingMain {
 
 	private JFrame frame;
+
 
 	/**
 	 * Launch the application.
@@ -60,10 +59,10 @@ public class SwingMain {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setSize(new Dimension(600, 200));
-		frame.setLocationRelativeTo(null);
 		frame.setTitle("Main");
 		frame.setBounds(0, 0, 287, 185);
 		frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		
 		JButton btnNewButton = new JButton("ACCEDER AL LOGIN");
 		btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));

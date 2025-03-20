@@ -36,6 +36,7 @@ public class SocioView {
 		frmSocio = new JFrame();
 		frmSocio.setSize(new Dimension(645, 451));
 		frmSocio.setResizable(false);
+		frmSocio.setLocationRelativeTo(null);
 		controlador=c;
 		frmSocio.addWindowListener(new WindowAdapter() {
 			public void windowActivated(WindowEvent e) {

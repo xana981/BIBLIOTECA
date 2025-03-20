@@ -29,6 +29,7 @@ public class BibliotecaView {
 		frmBiblioteca.setSize(new Dimension(484, 343));
 		frmBiblioteca.setResizable(false);
 		frmBiblioteca.setVisible(true);
+		frmBiblioteca.setLocationRelativeTo(null);
 		frmBiblioteca.addWindowListener(new WindowAdapter() {
 		public void windowActivated(WindowEvent e) {
 		controlador=c;
