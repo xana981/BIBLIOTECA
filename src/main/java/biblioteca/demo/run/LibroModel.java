@@ -16,7 +16,8 @@ public class LibroModel {
 		
 		String sql = "SELECT * FROM Libro WHERE ISBN = ?"; //crear el string que voy a ejecutar en la base de datos
 		
-		lista = db.executeQueryArray(sql,i);
+		lista = db.executeQueryArray(sql,i);  //ejecuta, pero devulelve una lista de objetos. 
+		//sql, el string que tiene la secuencia, i es el valor
 		
 		return lista;
 		

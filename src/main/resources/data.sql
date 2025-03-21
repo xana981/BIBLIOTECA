@@ -7,22 +7,22 @@ delete from Socio;
 delete from Prestamo;
 
 
-INSERT INTO Libro(ISBN,titulo,autor,añoEdicion,categoria) VALUES    /* Categoria 0: adultos, categoria 1: infantil */
-(100259,"Don Quijote de La Mancha I","Miguel de Cervantes",1991,0),
-(100260,"Don Quijote de La Mancha II","Miguel de Cervantes",1991,0),
-(102412,"Historias de Nueva Orleans","William Faulkner",1985,0),
-(106591,"El principito","Maquiavelo",1995,0),
-(165842,"Diplomacia","Henry Kissinger",1998,0),
-(156234,"El Último Emperador","Pu-Yi",1989,0),
-(165356,"Los Windsor","Kitty Kelley",1998,0),
-(132862,"Fortunata y Jacinta","Pérez Galdós",1984,0),
-(195932,"Bajo el asfalto, la flor","Monica Rodriguez",2002,1),
-(195297,"Ha nacido una isla","Aladjidi Virginie",1999,1),
-(195715,"Monstruo azul","Horcek Petr",2003,1),
-(100548,"El hundimiento","Manuel Vilaw",2015,0),
-(110812,"Cien noches","Luis Martin",2005,0),
-(196452,"Yo, Tarzanne","Festuc Teatre",2005,1),
-(184957,"La regenta","Benito Perez Galdos",2015,0);
+INSERT INTO Libro(ISBN,titulo,autor,añoEdicion,categoria) VALUES    
+(100259,"Don Quijote de La Mancha I","Miguel de Cervantes",1991,"Adulto"),
+(100260,"Don Quijote de La Mancha II","Miguel de Cervantes",1991,"Adulto"),
+(102412,"Historias de Nueva Orleans","William Faulkner",1985,"Adulto"),
+(106591,"El principito","Maquiavelo",1995,"Adulto"),
+(165842,"Diplomacia","Henry Kissinger",1998,"Adulto"),
+(156234,"El Último Emperador","Pu-Yi",1989,"Adulto"),
+(165356,"Los Windsor","Kitty Kelley",1998,"Adulto"),
+(132862,"Fortunata y Jacinta","Pérez Galdós",1984,"Adulto"),
+(195932,"Bajo el asfalto, la flor","Monica Rodriguez",2002,"Infantil"),
+(195297,"Ha nacido una isla","Aladjidi Virginie",1999,"Infantil"),
+(195715,"Monstruo azul","Horcek Petr",2003,"Infantil"),
+(100548,"El hundimiento","Manuel Vilaw",2015,"Adulto"),
+(110812,"Cien noches","Luis Martin",2005,"Adulto"),
+(196452,"Yo, Tarzanne","Festuc Teatre",2005,"Infantil"),
+(184957,"La regenta","Benito Perez Galdos",2015,"Adulto");
 
 INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES  /* esTrabajador 0: No, esTrabajador 1: Si */
 (53545473,"Veronica Gallo",0,'10-07-1991',"Tlfno: 985147896"),

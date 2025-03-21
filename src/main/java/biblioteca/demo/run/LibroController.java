@@ -31,8 +31,10 @@ public class LibroController {
 		
 		Object[] contenido = lista.getFirst(); // creo e inicializo la variable contenido
 		
-		this.view.gettextFieldTitulo().setText(contenido[0].toString()); // sacar la informacion que hay en la posicion 0 del array contenido que contiene el titulo que yo quiero mostrar 
-		
+		this.view.gettextFieldTitulo().setText(contenido[1].toString()); // sacar la informacion que hay en la posicion 0 del array contenido que contiene el titulo que yo quiero mostrar 
+		this.view.gettextFieldAutor().setText(contenido[2].toString());		
+		this.view.gettextFieldEdicion().setText(contenido[3].toString());		
+		this.view.gettextFieldCategoria().setText(contenido[4].toString());	
 		
 	};
 	

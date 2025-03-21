@@ -11,7 +11,7 @@ CREATE TABLE "Libro" (
 	"titulo"	TEXT NOT NULL,
 	"autor"	TEXT NOT NULL,
 	"añoEdicion"	INTEGER NOT NULL,
-	"categoria"	BLOB NOT NULL,
+	"categoria"	TEXT NOT NULL,
 	PRIMARY KEY("ISBN")
 );
 

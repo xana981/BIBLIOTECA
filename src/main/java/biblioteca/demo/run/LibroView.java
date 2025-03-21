@@ -38,7 +38,8 @@ public class LibroView {
 	private DefaultTableModel modeloArticulo;
 	private TextField textFieldTitulo;
 	private TextField textFieldAutor;
-	
+	private TextField textFieldEdicion;
+	private TextField textFieldCategoria;
 	
 	public LibroView(LibroController c) {
 		inicialize(c);
@@ -110,6 +111,13 @@ public class LibroView {
 		tableLibro.getColumnModel().getColumn(3).setResizable(false);
 		tableLibro.getColumnModel().getColumn(3).setPreferredWidth(70);
 		scrollPaneLibro.setViewportView(tableLibro);
+		
+		JTextPane txtpnIntroducirLibro = new JTextPane();
+		txtpnIntroducirLibro.setBackground(SystemColor.menu);
+		txtpnIntroducirLibro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtpnIntroducirLibro.setText("Introducir isbn");
+		txtpnIntroducirLibro.setBounds(10, 62, 91, 27);
+		frmLibro.getContentPane().add(txtpnIntroducirLibro);
 
 		// Celdas para introducir los valores de la base de datos	(TextField)	
 		
@@ -132,7 +140,7 @@ public class LibroView {
 		textFieldAutor.setBounds(20, 186, 323, 21);
 		frmLibro.getContentPane().add(textFieldAutor);
 		
-		TextField textFieldEdicion = new TextField();
+		this.textFieldEdicion = new TextField();
 		textFieldEdicion.setText("Año de edición del libro");
 		textFieldEdicion.setForeground(Color.GRAY);
 		textFieldEdicion.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -141,7 +149,7 @@ public class LibroView {
 		textFieldEdicion.setBounds(20, 246, 147, 21);
 		frmLibro.getContentPane().add(textFieldEdicion);
 		
-		TextField textFieldCategoria = new TextField();
+		this.textFieldCategoria = new TextField();
 		textFieldCategoria.setText("Categoría del libro");
 		textFieldCategoria.setForeground(Color.GRAY);
 		textFieldCategoria.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -150,13 +158,7 @@ public class LibroView {
 		textFieldCategoria.setBounds(20, 306, 147, 21);
 		frmLibro.getContentPane().add(textFieldCategoria);
 		
-		JTextPane txtpnIntroducirLibro = new JTextPane();
-		txtpnIntroducirLibro.setBackground(SystemColor.menu);
-		txtpnIntroducirLibro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtpnIntroducirLibro.setText("Introducir isbn");
-		txtpnIntroducirLibro.setBounds(10, 62, 91, 27);
-		frmLibro.getContentPane().add(txtpnIntroducirLibro);
-		
+
 		//Los titulos de las opciones (txtpn)
 				
 		JTextPane txtpnTitulo = new JTextPane();                        //******************** txtpnTitulo (Titulos)
@@ -345,13 +347,6 @@ public class LibroView {
 	}	
 		
 	
-	
-	public void rellenaTitulo(int ISBN) {
-			
-		
-			
-	}
-
 	public TextField gettextFieldTitulo() {
 		// TODO Auto-generated method stub
 		return this.textFieldTitulo;
@@ -360,6 +355,16 @@ public class LibroView {
 	public TextField gettextFieldAutor() {
 		// TODO Auto-generated method stub
 		return this.textFieldAutor;
+	};
+	
+	public TextField gettextFieldCategoria() {
+		// TODO Auto-generated method stub
+		return this.textFieldCategoria;
+	};
+	
+	public TextField gettextFieldEdicion() {
+		// TODO Auto-generated method stub
+		return this.textFieldEdicion;
 	};
 	
 		
