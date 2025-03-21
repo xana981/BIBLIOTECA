@@ -17,18 +17,24 @@ public class LibroController {
 		//this.view.getFrame().setVisible(true);
 	}
 
-	public void LibroElegido(int ISBN) {
+	public void LibroElegidoController(int ISBN) {
 		//metodo para rellenar la tabla de articulos y pedidos
 		
-		List<Object[]> lista= null;
+		List<Object[]> lista = model.LibroElegidoModel(ISBN);// pedirle al modelo los registros de DB correspondientes a la tabla libro con ISBN = a lo que le paso desde la vista.
 		
-		model.LibroElegido(ISBN);
+		//en este momento, ya tengo en lista el resultado de la consulta a la DB
+		// en este caso, como el resultado es unico, tendre una lista con un elemento, correspondiente a la posicion 0 de la lista (lista.getFirst() o lista.get(0))
+		// este elemento de la lista, contiene un tipo Object[]. es un array de objetos (genericos)
+		//como el resultado del select del modelo solamente me devuelve el titulo, en el object[] voy a tener un array de longitud 1
 		
-		view.getText(TextFieldTitulo).setText.lista.get(0).toString();
+		//a continuacion creo una variable local que me va a permitir sacar la informacion del objeto contenido en la primera posicion de la lista que me devuelve el modelo.
+		
+		Object[] contenido = lista.getFirst(); // creo e inicializo la variable contenido
+		
+		this.view.gettextFieldTitulo().setText(contenido[0].toString()); // sacar la informacion que hay en la posicion 0 del array contenido que contiene el titulo que yo quiero mostrar 
+		
 		
 	};
-	
-	
 	
 	
 	public LibroView getView() {
