@@ -25,8 +25,8 @@ CREATE TABLE "Socio" (
 );
 
 CREATE TABLE "Prestamo" (
-	"libro"	INTEGER NOT NULL,
-	"socio"	INTEGER NOT NULL,
+	"ISBN"	INTEGER NOT NULL,
+	"numSocio"	INTEGER NOT NULL,
 	"fechaPrestamo"	INTEGER NOT NULL,
 	"fechaDevolucion" INTEGER,
 	PRIMARY KEY("socio","libro"),

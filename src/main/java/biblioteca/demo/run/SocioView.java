@@ -26,6 +26,10 @@ public class SocioView {
 	protected JFrame frmSocio;
 	private JTable tableSocio;
 	private SocioController controlador;
+	private TextField textFieldNombre;
+	private TextField textFieldNacimiento;
+	private TextField textFieldInfo;
+	
 	
 	public SocioView(SocioController c) {
 		inicialize(c);
@@ -49,10 +53,10 @@ public class SocioView {
 		btnCambioSocio.setBackground(new Color(255, 192, 203));
 		btnCambioSocio.setForeground(new Color(0, 0, 0));
 		btnCambioSocio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-
 		frmSocio.getContentPane().setLayout(null);
-		
-		JLabel lblSocio = new JLabel("SOCIO");
+				
+				
+		JLabel lblSocio = new JLabel("SOCIO");   //El TITULO
 		lblSocio.setBounds(271, 21, 99, 40);
 		lblSocio.setForeground(new Color(255, 128, 192));
 		lblSocio.setFont(new Font("Times New Roman", Font.BOLD, 28));
@@ -93,39 +97,6 @@ public class SocioView {
 		tableSocio.getColumnModel().getColumn(3).setPreferredWidth(74);
 		scrollPaneSocio.setViewportView(tableSocio);
 		
-		
-		TextField textFieldNombre = new TextField();
-		textFieldNombre.setText("Nombre y apellidos");
-		textFieldNombre.setForeground(Color.GRAY);
-		textFieldNombre.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldNombre.setEditable(false);
-		textFieldNombre.setBackground(new Color(233, 233, 233));
-		textFieldNombre.setBounds(20, 142, 323, 21);
-		frmSocio.getContentPane().add(textFieldNombre);
-		
-		TextField textFieldNacimiento = new TextField();
-		textFieldNacimiento.setText("Fecha de nacimiento");
-		textFieldNacimiento.setForeground(Color.GRAY);
-		textFieldNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldNacimiento.setEditable(false);
-		textFieldNacimiento.setBackground(new Color(233, 233, 233));
-		textFieldNacimiento.setBounds(20, 208, 147, 21);
-		frmSocio.getContentPane().add(textFieldNacimiento);
-		
-		TextField textFieldInfo = new TextField();
-		textFieldInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textFieldInfo.setEditable(true);
-			}
-		});
-		textFieldInfo.setText("Información adicional");
-		textFieldInfo.setForeground(Color.GRAY);
-		textFieldInfo.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldInfo.setEditable(false);
-		textFieldInfo.setBackground(new Color(233, 233, 233));
-		textFieldInfo.setBounds(20, 262, 323, 21);
-		frmSocio.getContentPane().add(textFieldInfo);
-		
 		JTextPane txtpnIntroducirSocio = new JTextPane();
 		txtpnIntroducirSocio.setBounds(10, 78, 132, 27);
 		txtpnIntroducirSocio.setBackground(SystemColor.menu);
@@ -148,6 +119,51 @@ public class SocioView {
 		textPaneSocio.setBounds(145, 77, 142, 27);
 		frmSocio.getContentPane().add(textPaneSocio);
 		
+		JButton btnBuscar = new JButton("");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.SocioElegidoController(Integer.parseInt(textPaneSocio.getText()));
+			}
+		});
+		btnBuscar.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\buscar.png"));
+		btnBuscar.setBounds(297, 78, 25, 27);
+		frmSocio.getContentPane().add(btnBuscar);
+		
+		// Celdas para introducir los valores de la base de datos	(TextField)	
+		
+		this.textFieldNombre = new TextField();
+		textFieldNombre.setText("Nombre y apellidos");
+		textFieldNombre.setForeground(Color.GRAY);
+		textFieldNombre.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldNombre.setEditable(false);
+		textFieldNombre.setBackground(new Color(233, 233, 233));
+		textFieldNombre.setBounds(20, 142, 323, 21);
+		frmSocio.getContentPane().add(textFieldNombre);
+		
+		this.textFieldNacimiento = new TextField();
+		textFieldNacimiento.setText("Fecha de nacimiento");
+		textFieldNacimiento.setForeground(Color.GRAY);
+		textFieldNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldNacimiento.setEditable(false);
+		textFieldNacimiento.setBackground(new Color(233, 233, 233));
+		textFieldNacimiento.setBounds(20, 208, 147, 21);
+		frmSocio.getContentPane().add(textFieldNacimiento);
+		
+		this.textFieldInfo = new TextField();
+		textFieldInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textFieldInfo.setEditable(true);
+			}
+		});
+		textFieldInfo.setText("Información adicional");
+		textFieldInfo.setForeground(Color.GRAY);
+		textFieldInfo.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldInfo.setEditable(false);
+		textFieldInfo.setBackground(new Color(233, 233, 233));
+		textFieldInfo.setBounds(20, 262, 323, 21);
+		frmSocio.getContentPane().add(textFieldInfo);
+		
+		//Los titulos de las opciones (txtpn)
 		
 		JTextPane txtpnNombreApellidos = new JTextPane();
 		txtpnNombreApellidos.setBounds(10, 115, 170, 21);
@@ -197,6 +213,8 @@ public class SocioView {
 				textFieldInfo.setForeground(Color.BLACK);
 				textFieldInfo.setText(null);
 				textFieldInfo.setBackground(Color.WHITE);
+				
+				btnAñadirNuevo.setVisible(false);
 			}
 		});
 		btnAñadirNuevo.setBounds(376, 85, 207, 51); //Boton "añadir nuevo"
@@ -204,6 +222,8 @@ public class SocioView {
 		btnAñadirNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnAñadirNuevo.setBackground(new Color(255, 192, 203));
 		frmSocio.getContentPane().add(btnAñadirNuevo);
+		
+		
 		
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() { //Activa pantalla confirmar
@@ -284,9 +304,20 @@ public class SocioView {
 		btnAtras.setBounds(10, 11, 75, 27);
 		frmSocio.getContentPane().add(btnAtras);
 		
-
-
-		
 		frmSocio.setVisible(true);
 	}
+	
+	public TextField gettextFieldNombre() {
+		return this.textFieldNombre;
+	};
+	
+	public TextField gettextFieldNacimiento() {
+		return this.textFieldNacimiento;
+	};
+	
+	public TextField gettextFieldInfo() {
+		return this.textFieldInfo;
+	};
+	
+	
 }

@@ -33,13 +33,13 @@ import javax.swing.ImageIcon;
 public class LibroView {
 	
 	protected JFrame frmLibro;
-	private JTable tableLibro;
+	private JTable tablaLibro;
 	private LibroController controlador;
-	private DefaultTableModel modeloArticulo;
 	private TextField textFieldTitulo;
 	private TextField textFieldAutor;
 	private TextField textFieldEdicion;
 	private TextField textFieldCategoria;
+	private DefaultTableModel tablaPrestamo;
 	
 	public LibroView(LibroController c) {
 		inicialize(c);
@@ -59,6 +59,14 @@ public class LibroView {
 		frmLibro.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		
 		frmLibro.getContentPane().setLayout(null);
+		
+		tablaPrestamo = new DefaultTableModel(new Object[][] {
+		},
+		new String[] {
+				"ISBN","numSocio","fechaPrestamo","fechaDevolucion"
+			}
+		);
+		
 		
 		JLabel lblLibro = new JLabel("LIBRO"); //El encabezado
 		lblLibro.setBounds(267, 11, 99, 40);
@@ -86,15 +94,15 @@ public class LibroView {
 		scrollPaneLibro.setBounds(20, 373, 592, 51);
 		frmLibro.getContentPane().add(scrollPaneLibro);
 		
-		tableLibro = new JTable();
-		tableLibro.setColumnSelectionAllowed(true);
-		tableLibro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		tableLibro.setModel(new DefaultTableModel(
+		tablaLibro = new JTable();
+		tablaLibro.setColumnSelectionAllowed(true);
+		tablaLibro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		tablaLibro.setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null},
 				},
 				new String[] {
-					"Nro. Socio", "Nombre", "Fecha prestamo", "Duracion"
+					"ISBN", "numSocio", "Fecha prestamo", "Duracion"
 				}
 			) {
 				Class[] columnTypes = new Class[] {
@@ -104,13 +112,13 @@ public class LibroView {
 					return columnTypes[columnIndex];
 				}
 			});
-		tableLibro.getColumnModel().getColumn(0).setResizable(false);
-		tableLibro.getColumnModel().getColumn(0).setPreferredWidth(56);
-		tableLibro.getColumnModel().getColumn(1).setPreferredWidth(222);
-		tableLibro.getColumnModel().getColumn(2).setPreferredWidth(92);
-		tableLibro.getColumnModel().getColumn(3).setResizable(false);
-		tableLibro.getColumnModel().getColumn(3).setPreferredWidth(70);
-		scrollPaneLibro.setViewportView(tableLibro);
+		tablaLibro.getColumnModel().getColumn(0).setResizable(false);
+		tablaLibro.getColumnModel().getColumn(0).setPreferredWidth(56);
+		tablaLibro.getColumnModel().getColumn(1).setPreferredWidth(222);
+		tablaLibro.getColumnModel().getColumn(2).setPreferredWidth(92);
+		tablaLibro.getColumnModel().getColumn(3).setResizable(false);
+		tablaLibro.getColumnModel().getColumn(3).setPreferredWidth(70);
+		scrollPaneLibro.setViewportView(tablaLibro);
 		
 		JTextPane txtpnIntroducirLibro = new JTextPane();
 		txtpnIntroducirLibro.setBackground(SystemColor.menu);
@@ -293,6 +301,8 @@ public class LibroView {
 				textFieldCategoria.setEditable(true);
 				textFieldCategoria.setForeground(Color.BLACK);
 				textFieldCategoria.setBackground(Color.WHITE);
+				
+				btnAñadirNuevo.setVisible(false);
 			}
 		});
 		btnAñadirNuevo.setForeground(Color.BLACK);
@@ -348,24 +358,27 @@ public class LibroView {
 		
 	
 	public TextField gettextFieldTitulo() {
-		// TODO Auto-generated method stub
 		return this.textFieldTitulo;
 	};
 	
 	public TextField gettextFieldAutor() {
-		// TODO Auto-generated method stub
 		return this.textFieldAutor;
 	};
 	
 	public TextField gettextFieldCategoria() {
-		// TODO Auto-generated method stub
 		return this.textFieldCategoria;
 	};
 	
 	public TextField gettextFieldEdicion() {
-		// TODO Auto-generated method stub
 		return this.textFieldEdicion;
 	};
+	
+	public void rellenaPrestamo(Object[] rowLibro) {
+		
+		this.tablaPrestamo.addRow(rowLibro);//para añadir una fila a la tabla lo primero que tengo que añadir es la 
+												//fila al modelo correspondiente a esa tabla
+		this.tablaLibro.setModel(tablaPrestamo); //una vez la tenga añadida al modelo, muestro el modelo en la tabla
+	}
 	
 		
 }

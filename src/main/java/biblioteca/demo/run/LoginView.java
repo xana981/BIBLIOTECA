@@ -46,7 +46,7 @@ public class LoginView {
 		
 		JTextPane textPaneUsuario = new JTextPane();
 		textPaneUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textPaneUsuario.setBounds(86, 64, 144, 27);
+		textPaneUsuario.setBounds(86, 69, 144, 23);
 		frmLogin.getContentPane().add(textPaneUsuario);
 		
 		JLabel lblLogin = new JLabel("Login");
@@ -123,7 +123,7 @@ public class LoginView {
 		
 		JLabel lblUsuario = new JLabel("Usuario");
 		lblUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblUsuario.setBounds(26, 64, 50, 27);
+		lblUsuario.setBounds(26, 69, 50, 22);
 		frmLogin.getContentPane().add(lblUsuario);
 		
 		JLabel lblClave = new JLabel("Contraseña");

@@ -37,11 +37,11 @@ INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES 
 (10625076,"Javier Fernandez",0,'15-03-1954',"Tlfno: 984215944"),
 (09452214,"Romina Perez",0,'21-09-1968',"Tlfno: 985845789");
 
-INSERT INTO Prestamo(libro,socio,fechaPrestamo,fechaDevolucion) VALUES 
-(100260,71658965,'17-03-2025',15),
+INSERT INTO Prestamo(ISBN,numSocio,fechaPrestamo,fechaDevolucion) VALUES 
+(100260,53545473,'17-03-2025',15),
 (165842,21856334,'28-02-2025',30),
 (195715,52148221,'06-03-2025',15),
-(100259,15493254,'26-02-2025',30),
+(100259,53545473,'26-02-2025',30),
 (184957,71658965,'28-02-2025',30),
 (165356,09452214,'15-03-2025',15);
 
