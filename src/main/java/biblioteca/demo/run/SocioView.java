@@ -24,11 +24,12 @@ import biblioteca.demo.run.*;
 public class SocioView {
 	
 	protected JFrame frmSocio;
-	private JTable tableSocio;
+	private JTable tablaSocio;
 	private SocioController controlador;
 	private TextField textFieldNombre;
 	private TextField textFieldNacimiento;
 	private TextField textFieldInfo;
+	private DefaultTableModel tablaPrestamo;
 	
 	
 	public SocioView(SocioController c) {
@@ -48,11 +49,19 @@ public class SocioView {
 		});
 		frmSocio.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 18));
 		
-		JButton btnCambioSocio = new JButton("Confirmar cambios"); //Boton "confirmar cambios"
-		btnCambioSocio.setBounds(376, 162, 207, 51);
-		btnCambioSocio.setBackground(new Color(255, 192, 203));
-		btnCambioSocio.setForeground(new Color(0, 0, 0));
-		btnCambioSocio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		tablaPrestamo = new DefaultTableModel(new Object[][] {
+		},
+		new String[] {
+				"ISBN", "Titulo", "Fecha prestamo", "Duracion", "New column"
+			}
+		);
+		
+		JButton btnConfirmarCambios = new JButton("Confirmar cambios"); //Boton "confirmar cambios"
+		btnConfirmarCambios.setEnabled(false);
+		btnConfirmarCambios.setBounds(376, 162, 207, 51);
+		btnConfirmarCambios.setBackground(new Color(255, 192, 203));
+		btnConfirmarCambios.setForeground(new Color(0, 0, 0));
+		btnConfirmarCambios.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frmSocio.getContentPane().setLayout(null);
 				
 				
@@ -61,41 +70,41 @@ public class SocioView {
 		lblSocio.setForeground(new Color(255, 128, 192));
 		lblSocio.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmSocio.getContentPane().add(lblSocio);
-		frmSocio.getContentPane().add(btnCambioSocio);
+		frmSocio.getContentPane().add(btnConfirmarCambios);
 		
 		JScrollPane scrollPaneSocio = new JScrollPane();
 		scrollPaneSocio.setBounds(20, 324, 592, 80);
 		scrollPaneSocio.setToolTipText("");
 		frmSocio.getContentPane().add(scrollPaneSocio);
 		
-		tableSocio = new JTable();
-		tableSocio.setColumnSelectionAllowed(true);
-		tableSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		tableSocio.setModel(new DefaultTableModel(
+		tablaSocio = new JTable();
+		tablaSocio.setColumnSelectionAllowed(true);
+		tablaSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		tablaSocio.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"isbn", "Titulo", "Fecha pr\u00E9stamo", "Duraci\u00F3n"
+				"ISBN", "Titulo", "Fecha prestamo", "Duracion", "New column"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class
+				Integer.class, String.class, String.class, String.class, Object.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
-		tableSocio.getColumnModel().getColumn(0).setResizable(false);
-		tableSocio.getColumnModel().getColumn(0).setPreferredWidth(40);
-		tableSocio.getColumnModel().getColumn(1).setPreferredWidth(200);
-		tableSocio.getColumnModel().getColumn(2).setResizable(false);
-		tableSocio.getColumnModel().getColumn(2).setPreferredWidth(90);
-		tableSocio.getColumnModel().getColumn(3).setResizable(false);
-		tableSocio.getColumnModel().getColumn(3).setPreferredWidth(74);
-		scrollPaneSocio.setViewportView(tableSocio);
+		tablaSocio.getColumnModel().getColumn(0).setResizable(false);
+		tablaSocio.getColumnModel().getColumn(0).setPreferredWidth(40);
+		tablaSocio.getColumnModel().getColumn(1).setPreferredWidth(200);
+		tablaSocio.getColumnModel().getColumn(2).setResizable(false);
+		tablaSocio.getColumnModel().getColumn(2).setPreferredWidth(90);
+		tablaSocio.getColumnModel().getColumn(3).setResizable(false);
+		tablaSocio.getColumnModel().getColumn(3).setPreferredWidth(74);
+		scrollPaneSocio.setViewportView(tablaSocio);
 		
 		JTextPane txtpnIntroducirSocio = new JTextPane();
 		txtpnIntroducirSocio.setBounds(10, 78, 132, 27);
@@ -193,9 +202,23 @@ public class SocioView {
 		txtpnFechaNacimiento.setBackground(SystemColor.menu);
 		frmSocio.getContentPane().add(txtpnFechaNacimiento);
 		
+		JButton btnEliminar = new JButton("Eliminar");                              //Boton ELIMINAR
+		btnEliminar.addActionListener(new ActionListener() { //Activa pantalla confirmar
+			public void actionPerformed(ActionEvent e) {
+				ConfirmarView confirmar = new ConfirmarView();
+			}
+		});
+		btnEliminar.setBounds(376, 238, 207, 51);
+		btnEliminar.setForeground(Color.BLACK);
+		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnEliminar.setBackground(new Color(255, 192, 203));
+		frmSocio.getContentPane().add(btnEliminar);
+		
 		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Se borran los valores y se hace editable para poder grabar
 		btnAñadirNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnConfirmarCambios.setEnabled(true);
+				
 				textPaneSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
 				textPaneSocio.setForeground(Color.BLACK);
 				
@@ -214,7 +237,8 @@ public class SocioView {
 				textFieldInfo.setText(null);
 				textFieldInfo.setBackground(Color.WHITE);
 				
-				btnAñadirNuevo.setVisible(false);
+				btnAñadirNuevo.setEnabled(false);
+				btnEliminar.setEnabled(false);
 			}
 		});
 		btnAñadirNuevo.setBounds(376, 85, 207, 51); //Boton "añadir nuevo"
@@ -223,19 +247,6 @@ public class SocioView {
 		btnAñadirNuevo.setBackground(new Color(255, 192, 203));
 		frmSocio.getContentPane().add(btnAñadirNuevo);
 		
-		
-		
-		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.addActionListener(new ActionListener() { //Activa pantalla confirmar
-			public void actionPerformed(ActionEvent e) {
-				ConfirmarView confirmar = new ConfirmarView();
-			}
-		});
-		btnEliminar.setBounds(376, 238, 207, 51);
-		btnEliminar.setForeground(Color.BLACK);
-		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnEliminar.setBackground(new Color(255, 192, 203));
-		frmSocio.getContentPane().add(btnEliminar);
 		
 		JButton btnModificarNombre = new JButton(""); //Boton modificar Nombre
 		btnModificarNombre.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
@@ -274,7 +285,7 @@ public class SocioView {
 		frmSocio.getContentPane().add(btnModificarInfo);
 		
 		
-		btnCambioSocio.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
+		btnConfirmarCambios.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
 			public void actionPerformed(ActionEvent e) {
 				textPaneSocio.setForeground(Color.GRAY);
 				
@@ -319,5 +330,10 @@ public class SocioView {
 		return this.textFieldInfo;
 	};
 	
-	
+	public void rellenaPrestamo(Object[] rowSocio) {
+		
+		this.tablaPrestamo.addRow(rowSocio);//para añadir una fila a la tabla lo primero que tengo que añadir es la 
+												//fila al modelo correspondiente a esa tabla
+		this.tablaSocio.setModel(tablaPrestamo); //una vez la tenga añadida al modelo, muestro el modelo en la tabla
+	}
 }

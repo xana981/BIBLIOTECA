@@ -23,14 +23,14 @@ CREATE TABLE "Socio" (
 	"masInfo" TEXT,
 	PRIMARY KEY("numSocio")
 );
-
 CREATE TABLE "Prestamo" (
 	"ISBN"	INTEGER NOT NULL,
 	"numSocio"	INTEGER NOT NULL,
+	"nombreCompleto"	INTEGER NOT NULL,
 	"fechaPrestamo"	INTEGER NOT NULL,
-	"fechaDevolucion" INTEGER,
-	PRIMARY KEY("socio","libro"),
-	FOREIGN KEY("libro") REFERENCES "Libro"("ISBN"),
-	FOREIGN KEY("socio") REFERENCES "Socio"("numSocio")
+	"Duracion"	INTEGER NOT NULL,
+	PRIMARY KEY("ISBN","numSocio"),
+	FOREIGN KEY("ISBN") REFERENCES "Libro"("ISBN"),
+	FOREIGN KEY("numSocio") REFERENCES "Socio"("numSocio"),
+	FOREIGN KEY("nombreCompleto") REFERENCES "Socio"("nombreCompleto")
 );
-
