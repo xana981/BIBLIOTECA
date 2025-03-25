@@ -11,6 +11,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
@@ -52,25 +53,16 @@ public class SocioView {
 		tablaPrestamo = new DefaultTableModel(new Object[][] {
 		},
 		new String[] {
-				"ISBN", "Titulo", "Fecha prestamo", "Duracion", "New column"
+				"ISBN", "Titulo", "Fecha prestamo", "Duracion"
 			}
 		);
-		
-		JButton btnConfirmarCambios = new JButton("Confirmar cambios"); //Boton "confirmar cambios"
-		btnConfirmarCambios.setEnabled(false);
-		btnConfirmarCambios.setBounds(376, 162, 207, 51);
-		btnConfirmarCambios.setBackground(new Color(255, 192, 203));
-		btnConfirmarCambios.setForeground(new Color(0, 0, 0));
-		btnConfirmarCambios.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		frmSocio.getContentPane().setLayout(null);
-				
-				
+						
 		JLabel lblSocio = new JLabel("SOCIO");   //El TITULO
 		lblSocio.setBounds(271, 21, 99, 40);
 		lblSocio.setForeground(new Color(255, 128, 192));
 		lblSocio.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmSocio.getContentPane().add(lblSocio);
-		frmSocio.getContentPane().add(btnConfirmarCambios);
+
 		
 		JScrollPane scrollPaneSocio = new JScrollPane();
 		scrollPaneSocio.setBounds(20, 324, 592, 80);
@@ -87,7 +79,7 @@ public class SocioView {
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"ISBN", "Titulo", "Fecha prestamo", "Duracion", "New column"
+				"ISBN", "Titulo", "Fecha prestamo", "Duracion"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -105,6 +97,31 @@ public class SocioView {
 		tablaSocio.getColumnModel().getColumn(3).setResizable(false);
 		tablaSocio.getColumnModel().getColumn(3).setPreferredWidth(74);
 		scrollPaneSocio.setViewportView(tablaSocio);
+		
+		//Presentacion botones ACCIONES
+		
+		JButton btnAñadirNuevo = new JButton("Añadir nuevo");      //Boton AÑADIR NUEVO
+		btnAñadirNuevo.setBounds(376, 85, 207, 51); //Boton "añadir nuevo"
+		btnAñadirNuevo.setForeground(Color.BLACK);
+		btnAñadirNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnAñadirNuevo.setBackground(new Color(255, 192, 203));
+		frmSocio.getContentPane().add(btnAñadirNuevo);
+		
+		JButton btnConfirmarCambios = new JButton("Confirmar cambios"); //Boton "CONFIRMAR CAMBIOS"
+		btnConfirmarCambios.setEnabled(false);
+		btnConfirmarCambios.setBounds(376, 162, 207, 51);
+		btnConfirmarCambios.setBackground(new Color(255, 192, 203));
+		btnConfirmarCambios.setForeground(new Color(0, 0, 0));
+		btnConfirmarCambios.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		frmSocio.getContentPane().setLayout(null);
+		//frmSocio.getContentPane().add(btnConfirmarCambios);
+		
+		JButton btnEliminar = new JButton("Eliminar");    //Boton eliminar
+		btnEliminar.setBounds(376, 238, 207, 51);
+		btnEliminar.setForeground(Color.BLACK);
+		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnEliminar.setBackground(new Color(255, 192, 203));
+		frmSocio.getContentPane().add(btnEliminar);
 		
 		JTextPane txtpnIntroducirSocio = new JTextPane();
 		txtpnIntroducirSocio.setBounds(10, 78, 132, 27);
@@ -128,7 +145,9 @@ public class SocioView {
 		textPaneSocio.setBounds(145, 77, 142, 27);
 		frmSocio.getContentPane().add(textPaneSocio);
 		
-		JButton btnBuscar = new JButton("");
+		//EJECUTAR BOTON BUSCAR		
+		
+		JButton btnBuscar = new JButton("");                 
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.SocioElegidoController(Integer.parseInt(textPaneSocio.getText()));
@@ -137,41 +156,7 @@ public class SocioView {
 		btnBuscar.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\buscar.png"));
 		btnBuscar.setBounds(297, 78, 25, 27);
 		frmSocio.getContentPane().add(btnBuscar);
-		
-		// Celdas para introducir los valores de la base de datos	(TextField)	
-		
-		this.textFieldNombre = new TextField();
-		textFieldNombre.setText("Nombre y apellidos");
-		textFieldNombre.setForeground(Color.GRAY);
-		textFieldNombre.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldNombre.setEditable(false);
-		textFieldNombre.setBackground(new Color(233, 233, 233));
-		textFieldNombre.setBounds(20, 142, 323, 21);
-		frmSocio.getContentPane().add(textFieldNombre);
-		
-		this.textFieldNacimiento = new TextField();
-		textFieldNacimiento.setText("Fecha de nacimiento");
-		textFieldNacimiento.setForeground(Color.GRAY);
-		textFieldNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldNacimiento.setEditable(false);
-		textFieldNacimiento.setBackground(new Color(233, 233, 233));
-		textFieldNacimiento.setBounds(20, 208, 147, 21);
-		frmSocio.getContentPane().add(textFieldNacimiento);
-		
-		this.textFieldInfo = new TextField();
-		textFieldInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textFieldInfo.setEditable(true);
-			}
-		});
-		textFieldInfo.setText("Información adicional");
-		textFieldInfo.setForeground(Color.GRAY);
-		textFieldInfo.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		textFieldInfo.setEditable(false);
-		textFieldInfo.setBackground(new Color(233, 233, 233));
-		textFieldInfo.setBounds(20, 262, 323, 21);
-		frmSocio.getContentPane().add(textFieldInfo);
-		
+				
 		//Los titulos de las opciones (txtpn)
 		
 		JTextPane txtpnNombreApellidos = new JTextPane();
@@ -201,21 +186,82 @@ public class SocioView {
 		txtpnFechaNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtpnFechaNacimiento.setBackground(SystemColor.menu);
 		frmSocio.getContentPane().add(txtpnFechaNacimiento);
+				
+		//Botones "iconos" para MODIFICAR DATOS
 		
-		JButton btnEliminar = new JButton("Eliminar");                              //Boton ELIMINAR
-		btnEliminar.addActionListener(new ActionListener() { //Activa pantalla confirmar
+		JButton btnModificarNombre = new JButton(""); //Boton modificar Nombre
+		btnModificarNombre.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
+		btnModificarNombre.setBounds(186, 115, 22, 22);
+		btnModificarNombre.setForeground(new Color(0, 0, 0));
+		frmSocio.getContentPane().add(btnModificarNombre);
+		
+		JButton btnModificarFecha = new JButton(""); //Boton modificar Fecha
+		btnModificarFecha.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
+		btnModificarFecha.setBounds(129, 178, 22, 22);
+		btnModificarFecha.setForeground(new Color(0, 0, 0));
+		frmSocio.getContentPane().add(btnModificarFecha);
+		
+		JButton btnModificarInfo = new JButton(""); //Boton modificar Info
+		btnModificarInfo.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
+		btnModificarInfo.setBounds(148, 235, 22, 22);
+		btnModificarInfo.setForeground(new Color(0, 0, 0));
+		frmSocio.getContentPane().add(btnModificarInfo);
+		
+		// Celdas para introducir los valores de la base de datos	(TextField)	
+		
+		this.textFieldNombre = new TextField();
+		textFieldNombre.setText("Nombre y apellidos");
+		textFieldNombre.setForeground(Color.GRAY);
+		textFieldNombre.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldNombre.setEditable(false);
+		textFieldNombre.setBackground(new Color(233, 233, 233));
+		textFieldNombre.setBounds(20, 142, 323, 21);
+		frmSocio.getContentPane().add(textFieldNombre);
+		
+		this.textFieldNacimiento = new TextField();
+		textFieldNacimiento.setText("Fecha de nacimiento");
+		textFieldNacimiento.setForeground(Color.GRAY);
+		textFieldNacimiento.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldNacimiento.setEditable(false);
+		textFieldNacimiento.setBackground(new Color(233, 233, 233));
+		textFieldNacimiento.setBounds(20, 208, 147, 21);
+		frmSocio.getContentPane().add(textFieldNacimiento);
+		
+		this.textFieldInfo = new TextField();
+		textFieldInfo.setText("Información adicional");
+		textFieldInfo.setForeground(Color.GRAY);
+		textFieldInfo.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		textFieldInfo.setEditable(false);
+		textFieldInfo.setBackground(new Color(233, 233, 233));
+		textFieldInfo.setBounds(20, 262, 323, 21);
+		frmSocio.getContentPane().add(textFieldInfo);
+				
+		//Botones de EJECUCION "AÑADIR - CONFIRMAR - ELIMINAR"
+                            
+		btnEliminar.addActionListener(new ActionListener() { //EJECUTAR Boton ELIMINAR Activa panel de confimacion
 			public void actionPerformed(ActionEvent e) {
-				ConfirmarView confirmar = new ConfirmarView();
+				int n = JOptionPane.showConfirmDialog(btnEliminar,"Estas seguro de ELIMINAR registro?","Mensaje",JOptionPane.YES_NO_OPTION);
+				///ConfirmarView confirmar = new ConfirmarView();
 			}
 		});
-		btnEliminar.setBounds(376, 238, 207, 51);
-		btnEliminar.setForeground(Color.BLACK);
-		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnEliminar.setBackground(new Color(255, 192, 203));
-		frmSocio.getContentPane().add(btnEliminar);
-		
-		JButton btnAñadirNuevo = new JButton("Añadir nuevo"); //Se borran los valores y se hace editable para poder grabar
-		btnAñadirNuevo.addActionListener(new ActionListener() {
+
+		btnConfirmarCambios.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
+			public void actionPerformed(ActionEvent e) {
+				textPaneSocio.setForeground(Color.GRAY);
+				
+				textFieldNombre.setEditable(false);
+				textFieldNombre.setForeground(Color.GRAY);//Cambiar el color de la letra				
+				
+				textFieldNacimiento.setEditable(false);
+				textFieldNacimiento.setForeground(Color.GRAY);//Cambiar el color de la letra
+				
+				textFieldInfo.setEditable(false);
+				textFieldInfo.setForeground(Color.GRAY);
+				
+			}
+		});
+
+		btnAñadirNuevo.addActionListener(new ActionListener() {  //Se borran los valores y se hace editable para poder grabar
 			public void actionPerformed(ActionEvent e) {
 				btnConfirmarCambios.setEnabled(true);
 				
@@ -241,67 +287,33 @@ public class SocioView {
 				btnEliminar.setEnabled(false);
 			}
 		});
-		btnAñadirNuevo.setBounds(376, 85, 207, 51); //Boton "añadir nuevo"
-		btnAñadirNuevo.setForeground(Color.BLACK);
-		btnAñadirNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnAñadirNuevo.setBackground(new Color(255, 192, 203));
-		frmSocio.getContentPane().add(btnAñadirNuevo);
+
+		//EJECUCION BOTONES MODIFICACIONES
 		
-		
-		JButton btnModificarNombre = new JButton(""); //Boton modificar Nombre
-		btnModificarNombre.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
-		btnModificarNombre.addActionListener(new ActionListener() {
+		btnModificarNombre.addActionListener(new ActionListener() { //EJECUTAR Boton Modificar NOMBRE
 			public void actionPerformed(ActionEvent e) {
 				textFieldNombre.setEditable(true);
 				textFieldNombre.setForeground(Color.BLACK);//Cambiar el color de la letra
 			}
 		});
-		btnModificarNombre.setBounds(186, 115, 22, 22);
-		btnModificarNombre.setForeground(new Color(0, 0, 0));
-		frmSocio.getContentPane().add(btnModificarNombre);
-		
-		JButton btnModificarFecha = new JButton(""); //Boton modificar Fecha
-		btnModificarFecha.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
+
 		btnModificarFecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldNacimiento.setEditable(true);
 				textFieldNacimiento.setForeground(Color.BLACK);//Cambiar el color de la letra
 			}
 		});
-		btnModificarFecha.setBounds(129, 178, 22, 22);
-		btnModificarFecha.setForeground(Color.RED);
-		frmSocio.getContentPane().add(btnModificarFecha);
-		
-		JButton btnModificarInfo = new JButton(""); //Boton modificar Info
-		btnModificarInfo.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
+
 		btnModificarInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldInfo.setEditable(true);
 				textFieldInfo.setForeground(Color.BLACK);//Cambiar el color de la letra
 			}
 		});
-		btnModificarInfo.setBounds(148, 235, 22, 22);
-		btnModificarInfo.setForeground(Color.RED);
-		frmSocio.getContentPane().add(btnModificarInfo);
+
+		//Boton "ATRAS"
 		
-		
-		btnConfirmarCambios.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
-			public void actionPerformed(ActionEvent e) {
-				textPaneSocio.setForeground(Color.GRAY);
-				
-				textFieldNombre.setEditable(false);
-				textFieldNombre.setForeground(Color.GRAY);//Cambiar el color de la letra				
-				
-				textFieldNacimiento.setEditable(false);
-				textFieldNacimiento.setForeground(Color.GRAY);//Cambiar el color de la letra
-				
-				textFieldInfo.setEditable(false);
-				textFieldInfo.setForeground(Color.GRAY);
-				
-			}
-		});
-		
-		JButton btnAtras = new JButton("Atrás");  //Boton atrás
+		JButton btnAtras = new JButton("Atrás");  
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmSocio.setVisible(false);

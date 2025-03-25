@@ -25,7 +25,7 @@ public class SocioController {
 		List<Object[]> lista = model.SocioElegidoModel(numSocio);// pedirle al modelo los registros de DB correspondientes a la tabla libro con ISBN = a lo que le paso desde la vista.
 		List<Object[]> tabla = model.infoPrestamoModel(numSocio);
 		
-		if (lista.size()==0) {      //Rellena tabla si el tamaño de la tabla es distinto a 0
+		if (lista.size()==0) {      //Rellena tabla SOLO si el tamaño de la tabla es distinto a 0 (No hay datos)
 			JOptionPane.showMessageDialog(null, "El socio que has introducido no existe");
 		}
 				

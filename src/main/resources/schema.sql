@@ -26,11 +26,9 @@ CREATE TABLE "Socio" (
 CREATE TABLE "Prestamo" (
 	"ISBN"	INTEGER NOT NULL,
 	"numSocio"	INTEGER NOT NULL,
-	"nombreCompleto"	INTEGER NOT NULL,
 	"fechaPrestamo"	INTEGER NOT NULL,
 	"Duracion"	INTEGER NOT NULL,
 	PRIMARY KEY("ISBN","numSocio"),
 	FOREIGN KEY("ISBN") REFERENCES "Libro"("ISBN"),
-	FOREIGN KEY("numSocio") REFERENCES "Socio"("numSocio"),
-	FOREIGN KEY("nombreCompleto") REFERENCES "Socio"("nombreCompleto")
+	FOREIGN KEY("numSocio") REFERENCES "Socio"("numSocio")
 );

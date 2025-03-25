@@ -58,7 +58,7 @@ public class LibroView {
 		tablaPrestamo = new DefaultTableModel(new Object[][] {
 		},
 		new String[] {
-				"ISBN", "Num. Socio", "Nombre completo", "Fecha prestamo", "Duracion"
+				"ISBN", "Numero de socio", "Fecha prestamo", "Duracion"
 			}
 		);
 		
@@ -157,30 +157,23 @@ public class LibroView {
 		tablaLibro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		tablaLibro.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"ISBN", "Num. Socio", "Nombre completo", "Fecha prestamo", "Duracion"
+				"ISBN", "Numero de socio", "Fecha prestamo", "Duracion"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Object.class, Integer.class, String.class, String.class, String.class
+				Object.class, String.class, String.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		tablaLibro.getColumnModel().getColumn(0).setResizable(false);
 		tablaLibro.getColumnModel().getColumn(1).setResizable(false);
 		tablaLibro.getColumnModel().getColumn(2).setResizable(false);
 		tablaLibro.getColumnModel().getColumn(3).setResizable(false);
-		tablaLibro.getColumnModel().getColumn(4).setResizable(false);
 		scrollPaneLibro.setViewportView(tablaLibro);
 		
 		JTextPane txtpnIntroducirLibro = new JTextPane();
