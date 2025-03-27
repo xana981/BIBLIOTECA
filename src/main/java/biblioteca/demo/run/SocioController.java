@@ -28,6 +28,7 @@ public class SocioController {
 		if (lista.size()==0) {      //Rellena tabla SOLO si el tamaño de la tabla es distinto a 0 (No hay datos)
 			JOptionPane.showMessageDialog(null, "El socio que has introducido no existe");
 		}
+		
 				
 		//en este momento, ya tengo en lista el resultado de la consulta a la DB
 		// en este caso, como el resultado es unico, tendre una lista con un elemento, correspondiente a la posicion 0 de la lista (lista.getFirst() o lista.get(0))
@@ -44,15 +45,21 @@ public class SocioController {
 			}
 			
 			this.view.gettextFieldNombre().setText(contenido[1].toString()); // sacar la informacion que hay en la posicion 0 del array contenido que contiene el titulo que yo quiero mostrar 
+			this.view.gettextFieldTrabajador().setText(contenido[2].toString());	
 			this.view.gettextFieldNacimiento().setText(contenido[3].toString());		
-			this.view.gettextFieldInfo().setText(contenido[4].toString());		
-	
+			this.view.gettextFieldInfo().setText(contenido[4].toString());
+
 			for (int i=0; i<(tabla.size());i++) {
 				view.rellenaPrestamo(tabla.get(i));   
 			}
 		}
 	};
-
+	
+	public void ConfirmarCambiosController() {
+		
+	};
+	
+	
 	public SocioView getView() {
 		return view;
 	}

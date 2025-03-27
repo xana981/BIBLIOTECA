@@ -8,11 +8,6 @@ public class SocioModel {
 	
 	Database db = new Database();
 	
-	Database dbPrestamo = new Database();
-	
-	//Database dbLibro = new Database();
-
-	
 	public List<Object[]> SocioElegidoModel(int i) {
 		
 		List<Object[]> lista = null; //esta lista es el resultado que le va a pasar al controlador como resultado de la consulta
@@ -34,26 +29,35 @@ public class SocioModel {
 		
 		String sql1 = "SELECT * FROM Prestamo WHERE numSocio = ?"; //crear el string que voy a ejecutar en la base de datos
 		
-		tabla = dbPrestamo.executeQueryArray(sql1,j); 
+		tabla = db.executeQueryArray(sql1,j); 
 		//ejecuta, pero devulelve una lista de objetos. 
 		//sql, el string que tiene la secuencia, i es el valor
 		
 		return tabla;
 	}
 	
-	/*public List<Object[]> infoLibro(int g) {
+	public List<Object[]> AniadirNuevo (int num,String nombre,String trabaja,int fecha,String info) {
 		
-		List<Object[]> valor = null; //esta lista es el resultado que le va a pasar al controlador como resultado de la consulta
-									// a la base de datos
+		List<Object[]> nuevo = null; 							
 		
-		String sqlValor = "SELECT Titulo FROM Libro WHERE ISBN = ?"; //crear el string que voy a ejecutar en la base de datos
+		String sqlNuevo = "INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES (?,?,?,?,?)";
+
+		nuevo = db.executeQueryArray(sqlNuevo,num,nombre,trabaja,fecha,info,num); 
 		
-		valor = dbLibro.executeQueryArray(sqlValor,g); 
-		//ejecuta, pero devulelve una lista de objetos. 
-		//sqlValor, el string que tiene la secuencia, g es el valor
+		return nuevo;
+	}
+	
+	
+	public List<Object[]> ConfirmarCambios(int num,String nombre,String trabaja,int fecha,String info) {
 		
-		return valor;
-	}*/
+		List<Object[]> cambios = null; 							
+		
+		String sqlCambios = "UPDATE Socio SET (numSocio = ?,nombreCompleto = ?,esTrabajador = ?,fechaNac = ?,masInfo = ?) WHERE numSocio = ?";
+		
+		cambios = db.executeQueryArray(sqlCambios,num,nombre,trabaja,fecha,info); 
+		
+		return cambios;
+	}
 	
 
 }

@@ -18,12 +18,16 @@ public class BibliotecaView {
 	protected JFrame frmBiblioteca;
 	private JPasswordField passwordFieldClave;
 	private BibliotecaController controlador;
+	private PrestamoController controller;
 	
 	public BibliotecaView(BibliotecaController c) {
 		inicialize(c);
 	}
 	
 	private void inicialize(BibliotecaController c) {
+		
+		controller = new PrestamoController();
+		
 		
 		frmBiblioteca = new JFrame();
 		frmBiblioteca.setSize(new Dimension(484, 343));
@@ -42,22 +46,20 @@ public class BibliotecaView {
 		lblNewLabel.setForeground(new Color(255, 128, 192));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 28));
 		frmBiblioteca.getContentPane().add(lblNewLabel);
+		frmBiblioteca.getContentPane().setLayout(null);
 
-		JButton btnBiblioteca = new JButton("REALIZAR PRÉSTAMO / DEVOLUCIÓN");
-		btnBiblioteca.setBounds(33, 84, 377, 35);
-		btnBiblioteca.setForeground(new Color(0, 0, 0));
-		btnBiblioteca.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnBiblioteca.addActionListener(new ActionListener() {
+		JButton btnPrestamo = new JButton("REALIZAR PRÉSTAMO / DEVOLUCIÓN");
+		btnPrestamo.setBounds(33, 84, 377, 35);
+		btnPrestamo.setForeground(new Color(0, 0, 0));
+		btnPrestamo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnPrestamo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				PrestamoController controlador = new PrestamoController();
-				controlador.setVistaModel(new PrestamoView(controlador), new PrestamoModel());  
-				frmBiblioteca.setVisible(false);
+				frmBiblioteca.setVisible(false);	
+				PrestamoController controlador = new PrestamoController();				
+				controller.setVistaModel(new PrestamoView(controller),new PrestamoModel());
 			}
 		});
-		frmBiblioteca.getContentPane().add(btnBiblioteca);
-		frmBiblioteca.getContentPane().setLayout(null);
-		
+		frmBiblioteca.getContentPane().add(btnPrestamo);
 		
 		JButton btnLibro = new JButton("LIBRO (Añadir, modificar...)");
 		btnLibro.setBounds(89, 143, 267, 35);
@@ -95,7 +97,6 @@ public class BibliotecaView {
 		btnSalir.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		btnSalir.setBackground(Color.LIGHT_GRAY);
 		btnSalir.setBounds(386, 265, 70, 27);
-		
 		frmBiblioteca.getContentPane().add(btnSalir);
 		
 	}

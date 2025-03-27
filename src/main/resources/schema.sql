@@ -18,7 +18,7 @@ CREATE TABLE "Libro" (
 CREATE TABLE "Socio" (
 	"numSocio"	INTEGER NOT NULL,
 	"nombreCompleto" TEXT NOT NULL,
-	"esTrabajador" INTEGER NOT NULL,
+	"esTrabajador" TEXT NOT NULL,
 	"fechaNac" INTEGER NOT NULL,
 	"masInfo" TEXT,
 	PRIMARY KEY("numSocio")
