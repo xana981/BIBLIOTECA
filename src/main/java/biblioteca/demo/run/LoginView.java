@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -112,7 +114,7 @@ public class LoginView {
 				else
 				{
 					passwordFieldContra.setText(null);
-					IncorrectaView incorrecta = new IncorrectaView();	 //Cambio a la pantalla Incorrecta
+					JOptionPane.showMessageDialog(null, "La contraseña no es correcta");
 				}
 			}
 		});

@@ -68,13 +68,30 @@ public class PrestamoController {
 		}
 		if (libroPrestado.size()==0) {      //Rellena tabla SOLO si el tamaño de la tabla es distinto a 0 (No hay datos)
 			this.view.gettextFieldPrestado().setText("No".toString());
+			
+			this.view.enabledrdbtn15().setEnabled(true);
+			this.view.enabledrdbtn30().setEnabled(true);
 		}
 		else {
 			this.view.gettextFieldPrestado().setText("Si".toString());
+
 		}
 		
-	};
 
+	};
+	
+	public void ConfirmarPrestamoController(int ISBN,int numSocio) {
+		List<Object[]> confirmarPrestado = model.LibroPrestadoModel(ISBN);
+		
+		Object[] contenidoPrestado = confirmarPrestado.getFirst();
+		
+	//	if (numSocio == contenidoPrestado[1]) {
+	//		
+	//	}
+		
+	}
+	
+	
 
 	public PrestamoView getView() {
 		return view;

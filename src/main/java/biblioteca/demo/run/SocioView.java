@@ -21,7 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import biblioteca.demo.run.*;
-import javax.swing.JCheckBox;
+
 
 public class SocioView {
 	
@@ -73,23 +73,7 @@ public class SocioView {
 		tablaSocio = new JTable();
 		tablaSocio.setColumnSelectionAllowed(true);
 		tablaSocio.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		tablaSocio.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"ISBN", "Titulo", "Fecha prestamo", "Duracion"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		tablaSocio.setModel(tablaPrestamo);
 		tablaSocio.getColumnModel().getColumn(0).setResizable(false);
 		tablaSocio.getColumnModel().getColumn(0).setPreferredWidth(40);
 		tablaSocio.getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -362,9 +346,16 @@ public class SocioView {
 			public void actionPerformed(ActionEvent e) {
 				int n = JOptionPane.showConfirmDialog(btnConfirmarCambios,"¿Estas seguro de CONFIRMAR los cambios?","Mensaje",JOptionPane.YES_NO_OPTION);
 				
-				if(n==0) {    //Si la respuesta es SI
+				if(n==0) {    //Si la respuesta es SI, tiene que subir los datos a la base de datos
 					
-					//controlador.SocioElegidoController(Integer.parseInt(textPaneSocio.getText()));
+					
+										
+					controlador.ConfirmarCambiosController((textPaneSocio.getText()),(textFieldNombre.getText()),(textFieldTrabajador.getText()),(textFieldNacimiento.getText()),(textFieldInfo.getText()));
+
+
+					
+					
+					
 					
 					BibliotecaController controlador = new BibliotecaController();
 					controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
@@ -373,15 +364,12 @@ public class SocioView {
 				
 				textPaneSocio.setForeground(Color.GRAY);
 				
-				textFieldNombre.setEditable(false);
+				textFieldNombre.setEditable(false); //Hacer el cuadro editable
 				textFieldNombre.setForeground(Color.GRAY);//Cambiar el color de la letra				
-				
 				textFieldNacimiento.setEditable(false);
-				textFieldNacimiento.setForeground(Color.GRAY);//Cambiar el color de la letra
-				
+				textFieldNacimiento.setForeground(Color.GRAY);
 				textFieldInfo.setEditable(false);
 				textFieldInfo.setForeground(Color.GRAY);
-	
 				textFieldTrabajador.setEditable(false);
 				textFieldTrabajador.setForeground(Color.GRAY);
 						}

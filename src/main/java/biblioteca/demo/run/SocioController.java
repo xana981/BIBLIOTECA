@@ -55,7 +55,12 @@ public class SocioController {
 		}
 	};
 	
-	public void ConfirmarCambiosController() {
+	public void ConfirmarCambiosController(String numSocio,String nombreCompleto,String esTrabajador,String fechaNac,String masInfo) {
+		
+		
+		
+		
+		
 		
 	};
 	

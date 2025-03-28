@@ -154,22 +154,9 @@ public class LibroView {
 		tablaLibro = new JTable();
 		tablaLibro.setVisible(false);
 		tablaLibro.setColumnSelectionAllowed(true);
+		tablaLibro.setModel(tablaPrestamo);
 		tablaLibro.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		tablaLibro.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-			},
-			new String[] {
-				"ISBN", "Numero de socio", "Fecha prestamo", "Duracion"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Object.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+
 		tablaLibro.getColumnModel().getColumn(0).setResizable(false);
 		tablaLibro.getColumnModel().getColumn(1).setResizable(false);
 		tablaLibro.getColumnModel().getColumn(2).setResizable(false);
@@ -272,7 +259,6 @@ public class LibroView {
 				
 				if ((textPaneLibro.getText()) == "") {
 					JOptionPane.showMessageDialog(null, "No has introducido ningún valor");
-					
 				}
 				else {
 					controlador.LibroElegidoController(Integer.parseInt(textPaneLibro.getText())); 

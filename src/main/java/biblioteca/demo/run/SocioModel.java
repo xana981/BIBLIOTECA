@@ -36,13 +36,13 @@ public class SocioModel {
 		return tabla;
 	}
 	
-	public List<Object[]> AniadirNuevo (int num,String nombre,String trabaja,int fecha,String info) {
+	public List<Object[]> AniadirNuevoModel (int num,String nombre,String trabaja,int fecha,String info) {  //Insertar VALORES socio NUEVO
 		
 		List<Object[]> nuevo = null; 							
 		
 		String sqlNuevo = "INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES (?,?,?,?,?)";
 
-		nuevo = db.executeQueryArray(sqlNuevo,num,nombre,trabaja,fecha,info,num); 
+		nuevo = db.executeQueryArray(sqlNuevo,num,nombre,trabaja,fecha,info); 
 		
 		return nuevo;
 	}

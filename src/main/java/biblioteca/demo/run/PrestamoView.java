@@ -40,6 +40,8 @@ public class PrestamoView {
 	private TextField textFieldTitulo; 
 	private TextField textFieldPrestado;
 	private DefaultTableModel tablaPrestamo;
+	private JRadioButton rdbtn15;	
+	private JRadioButton rdbtn30;
 
 	
 	public PrestamoView(PrestamoController c) {
@@ -74,15 +76,12 @@ public class PrestamoView {
 		frmPrestamo.getContentPane().add(lblPrestamoDevolucion);
 		
 		JButton btnPrestamo = new JButton("Confirmar préstamo");
+		btnPrestamo.setEnabled(false);
 		btnPrestamo.setBackground(new Color(255, 192, 203));
 		btnPrestamo.setBounds(55, 435, 207, 51);
 		btnPrestamo.setForeground(new Color(0, 0, 0));
 		btnPrestamo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnPrestamo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ConfirmarView confirmar = new ConfirmarView();	 //Activa la pantalla Confirmar	
-			}
-		});
+		
 		frmPrestamo.getContentPane().setLayout(null);
 		frmPrestamo.getContentPane().add(btnPrestamo);
 		
@@ -122,30 +121,9 @@ public class PrestamoView {
 		tablaPrestados.setCellSelectionEnabled(true);
 		tablaPrestados.setEnabled(true);
 		tablaPrestados.setColumnSelectionAllowed(true);
+		tablaPrestados.setModel(tablaPrestamo);
 		tablaPrestados.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		tablaPrestados.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"isbn", "Numero de socio", "Fecha pr\u00E9stamo", "Duraci\u00F3n"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				true, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+
 		tablaPrestados.getColumnModel().getColumn(0).setResizable(false);
 		tablaPrestados.getColumnModel().getColumn(0).setPreferredWidth(40);
 		tablaPrestados.getColumnModel().getColumn(1).setResizable(false);
@@ -274,12 +252,14 @@ public class PrestamoView {
 		frmPrestamo.getContentPane().add(txtpnDuracion);
 		
 		// Mostrar RADIO BUTTON 15 o 30 dias
-		JRadioButton rdbtn15 = new JRadioButton("15 días");
+		this.rdbtn15 = new JRadioButton("15 días");
+		rdbtn15.setEnabled(false);
 		rdbtn15.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		rdbtn15.setBounds(139, 383, 70, 31);
 		frmPrestamo.getContentPane().add(rdbtn15);
 		
-		JRadioButton rdbtn30 = new JRadioButton("30 días");
+		this.rdbtn30 = new JRadioButton("30 días");
+		rdbtn30.setEnabled(false);
 		rdbtn30.setToolTipText("");
 		rdbtn30.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		rdbtn30.setBounds(211, 383, 70, 31);
@@ -287,6 +267,7 @@ public class PrestamoView {
 		
 		// Mostrar BOTON Devolucion
 		JButton btnDevolucion = new JButton("Confirmar devolución");
+		btnDevolucion.setEnabled(false);
 		btnDevolucion.setForeground(Color.BLACK);
 		btnDevolucion.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnDevolucion.setBackground(new Color(255, 192, 203));
@@ -304,7 +285,6 @@ public class PrestamoView {
 					textPaneISBN.setEnabled(true);
 					textPaneISBN.setEditable(true);
 					btnBuscarISBN.setEnabled(true);
-					
 				}
 			}
 		});
@@ -316,7 +296,7 @@ public class PrestamoView {
 					JOptionPane.showMessageDialog(null, "No has introducido ningún valor");
 				}
 				else {
-					controlador.LibroElegidoController(Integer.parseInt(textPaneISBN.getText()));
+					controlador.LibroElegidoController(Integer.parseInt(textPaneISBN.getText()));					
 				}
 			}
 		});
@@ -326,19 +306,41 @@ public class PrestamoView {
 		rdbtn15.addActionListener(new ActionListener() { //Si se toca "15 dias", se desactiva "30 dias"
 			public void actionPerformed(ActionEvent e) {
 				rdbtn30.setSelected(false);
+				btnPrestamo.setEnabled(true);
 			}
 		});
 		
 		rdbtn30.addActionListener(new ActionListener() {//Si se toca "30 dias", se desactiva "15 dias"
 			public void actionPerformed(ActionEvent e) {
 				rdbtn15.setSelected(false);
+				btnPrestamo.setEnabled(true);
+			}
+		});
+		
+		//EJECUTAR BOTON CONFIRMAR		
+		btnPrestamo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				int n = JOptionPane.showConfirmDialog(btnPrestamo,"¿Estas seguro de CONFIRMAR los cambios?","Mensaje",JOptionPane.YES_NO_OPTION);
+				if(n==0) {    //Si la respuesta es SI
+					
+					
+					frmPrestamo.setVisible(false);
+				}
 			}
 		});
 		
 		//EJECUTAR BOTON DEVOLUCION
 		btnDevolucion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConfirmarView confirmar = new ConfirmarView();	 //Activa la pantalla Confirmar	
+				int n = JOptionPane.showConfirmDialog(btnDevolucion,"¿Estas seguro de DEVOLVER el libro seleccionado?","Mensaje",JOptionPane.YES_NO_OPTION);
+				if(n==0) {    //Si la respuesta es SI
+					
+					
+					frmPrestamo.setVisible(false);
+				}	
 			}
 		});
 		
@@ -375,6 +377,14 @@ public class PrestamoView {
 	
 	public TextField gettextFieldPrestado() {
 		return this.textFieldPrestado;
+	}
+	
+	public JRadioButton enabledrdbtn15() {
+		return this.rdbtn15;
+	}	
+	
+	public JRadioButton enabledrdbtn30() {
+		return this.rdbtn30;
 	}
 	
 	public void rellenaPrestamo(Object[] rowPrestados) {  //RELLENAR TABLA
