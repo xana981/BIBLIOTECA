@@ -2,6 +2,7 @@ package biblioteca.demo.run;
 
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import biblioteca.demo.run.SocioModel;
@@ -55,6 +56,36 @@ public class SocioController {
 		}
 	};
 	
+	
+	public void confirmarNuevoController() {  ///int numSocio,String nombreCompleto,String esTrabajador,String fechaNac,String masInfo
+	
+		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de DAR el ALTA?","Advertencia",JOptionPane.YES_NO_OPTION);
+		if (n==0) {
+			
+			String numSocio; //creo la variable	
+			String nombreCompleto;
+			String esTrabajador;
+			String fechaNac;
+			String masInfo;
+		
+			numSocio = this.view.gettextPaneSocio().getText();   
+			nombreCompleto = this.view.gettextFieldNombre().getText(); 
+			esTrabajador = this.view.gettextFieldTrabajador().getText().toString(); 
+			fechaNac = this.view.gettextFieldNacimiento().getText().toString();
+			masInfo = this.view.gettextFieldInfo().getText().toString();
+	
+			this.model.confirmarNuevoModel(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo);
+			
+			JOptionPane.showMessageDialog(null, "El alta de SOCIO nuevo se he generado correctamente");
+			
+			this.view.frmSocio.setVisible(false);
+			BibliotecaController controlador = new BibliotecaController();
+			controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
+		}
+		
+
+	};
+		
 	public void ConfirmarCambiosController(String numSocio,String nombreCompleto,String esTrabajador,String fechaNac,String masInfo) {
 		
 		
@@ -63,6 +94,21 @@ public class SocioController {
 		
 		
 	};
+	
+	public void EliminarSocioController(String numSocio) {
+		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de ELIMINAR registro?","Advertencia",JOptionPane.YES_NO_OPTION);
+
+		numSocio = this.view.gettextPaneSocio().getText();
+		if(n==0) {
+			this.model.EliminarSocioModel(numSocio);
+		}
+		
+		JOptionPane.showMessageDialog(null, "Se ha eliminado el SOCIO correctamente");
+		
+		this.view.frmSocio.setVisible(false);
+		BibliotecaController controlador = new BibliotecaController();
+		controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
+	}
 	
 	
 	public SocioView getView() {

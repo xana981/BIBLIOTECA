@@ -3,7 +3,6 @@
 --Para giis.demo.tkrun:
 
 delete from Libro;
-delete from Socio;
 delete from Prestamo;
 
 

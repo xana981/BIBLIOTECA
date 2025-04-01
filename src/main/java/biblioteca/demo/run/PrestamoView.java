@@ -118,9 +118,9 @@ public class PrestamoView {
 		frmPrestamo.getContentPane().add(scrollPanePrestados);
 		
 		tablaPrestados = new JTable();
-		tablaPrestados.setCellSelectionEnabled(true);
-		tablaPrestados.setEnabled(true);
-		tablaPrestados.setColumnSelectionAllowed(true);
+		//tablaPrestados.setCellSelectionEnabled(true);
+		//tablaPrestados.setEnabled(true);
+		//tablaPrestados.setColumnSelectionAllowed(true);
 		tablaPrestados.setModel(tablaPrestamo);
 		tablaPrestados.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 
