@@ -60,7 +60,7 @@ public class SocioView {
 		tablaPrestamo = new DefaultTableModel(new Object[][] {
 		},
 		new String[] {
-				"ISBN", "Titulo", "Fecha prestamo", "Duracion"
+				"ISBN", "ISBN", "Fecha prestamo", "Duracion"
 			}
 		);
 						
@@ -91,7 +91,7 @@ public class SocioView {
 		
 		//Presentacion botones ACCIONES
 		
-		JButton btnAñadirNuevo = new JButton("Añadir nuevo");      //Boton AÑADIR NUEVO
+		JButton btnAñadirNuevo = new JButton("Añadir nuevo");
 		btnAñadirNuevo.setBounds(376, 85, 207, 51); //Boton "añadir nuevo"
 		btnAñadirNuevo.setForeground(Color.BLACK);
 		btnAñadirNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -115,6 +115,7 @@ public class SocioView {
 		frmSocio.getContentPane().add(btnConfirmarNuevo);
 		
 		JButton btnEliminar = new JButton("Eliminar");    //Boton eliminar
+		btnEliminar.setEnabled(false);
 		btnEliminar.setBounds(376, 238, 207, 51);
 		btnEliminar.setForeground(Color.BLACK);
 		btnEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -134,9 +135,9 @@ public class SocioView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if  (tablaPrestamo.getRowCount() > 0) { // Si la tabla tiene valores los ELIMINA para comenzar de nuevo
-					tablaPrestamo.removeRow(0);
+					tablaPrestamo.setRowCount(0);
 				}
-				tablaSocio.setVisible(false);
+				//tablaSocio.setVisible(false);
 				
 				textPaneSocio.setForeground(Color.BLACK);//Cambiar el color de la letra			
 				textPaneSocio.setText(null); //Quitar el texto de socio para poder escribir el numero del codigo
@@ -306,7 +307,13 @@ public class SocioView {
 				btnModificarInfo.setEnabled(true);
 				btnModificarTrabajador.setEnabled(true);				
 				btnAñadirNuevo.setEnabled(true);
-				btnEliminar.setEnabled(true);
+				
+				if (tablaPrestamo.getRowCount() > 0) {
+					btnEliminar.setEnabled(false);
+				}	
+				else {
+					btnEliminar.setEnabled(true);
+				}
 			}
 		}
 		});
@@ -318,7 +325,7 @@ public class SocioView {
 				btnConfirmarNuevo.setEnabled(true);
 				
 				if  (tablaPrestamo.getRowCount() > 0) { // Si la tabla tiene valores los ELIMINA para comenzar de nuevo
-					tablaPrestamo.removeRow(0);
+					tablaPrestamo.setRowCount(0);
 				}		
 				tablaSocio.setVisible(false);
 				txtpnFecha.setVisible(true);
@@ -365,33 +372,7 @@ public class SocioView {
 
 		btnConfirmarCambios.addActionListener(new ActionListener() { //PULSAR BOTON CONFIRMAR CAMBIOS _ Cuando se confirman los cambios se le quita el editable y cambia el color
 			public void actionPerformed(ActionEvent e) {
-				int n = JOptionPane.showConfirmDialog(btnConfirmarCambios,"¿Estas seguro de CONFIRMAR los cambios?","Mensaje",JOptionPane.YES_NO_OPTION);
-				
-				if(n==0) {    //Si la respuesta es SI, tiene que subir los datos a la base de datos
-					
-					//controlador.ConfirmarCambiosController(null, null, null, null, null);
-										
-		
-
-
-					
-					
-					controlador.ConfirmarCambiosController((textPaneSocio.getText()),(textFieldNombre.getText()),(textFieldTrabajador.getText()),(textFieldNacimiento.getText()),(textFieldInfo.getText()));				
-					
-					BibliotecaController controlador = new BibliotecaController();
-					controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
-					frmSocio.setVisible(false);   //Cuando se confirman los cambios se le quita el editable y cambia el color
-				}
-				
-				/*textPaneSocio.setForeground(Color.GRAY);
-				textFieldNombre.setEditable(false); //Hacer el cuadro NO editable
-				textFieldNombre.setForeground(Color.GRAY);//Cambiar el color de la letra				
-				textFieldNacimiento.setEditable(false);
-				textFieldNacimiento.setForeground(Color.GRAY);
-				textFieldInfo.setEditable(false);
-				textFieldInfo.setForeground(Color.GRAY);
-				textFieldTrabajador.setEditable(false);
-				textFieldTrabajador.setForeground(Color.GRAY);*/
+				controlador.ConfirmarCambiosController();
 			}
 		});
 

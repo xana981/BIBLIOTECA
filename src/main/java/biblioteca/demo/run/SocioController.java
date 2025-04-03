@@ -42,7 +42,7 @@ public class SocioController {
 			Object[] contenido = lista.getFirst();  //creo e inicializo la variable contenido
 			
 			if (tabla.size()!=0) {      //Rellena tabla si el tamaño de la tabla es distinto a 0
-				Object[] contenidotabla = tabla.get(1);
+				Object[] contenidotabla = tabla.get(0);
 			}
 			
 			this.view.gettextFieldNombre().setText(contenido[1].toString()); // sacar la informacion que hay en la posicion 0 del array contenido que contiene el titulo que yo quiero mostrar 
@@ -56,47 +56,61 @@ public class SocioController {
 		}
 	};
 	
-	
 	public void confirmarNuevoController() {  ///int numSocio,String nombreCompleto,String esTrabajador,String fechaNac,String masInfo
 	
-		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de DAR el ALTA?","Advertencia",JOptionPane.YES_NO_OPTION);
-		if (n==0) {
+		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de DAR el ALTA?","Advertencia",JOptionPane.YES_NO_OPTION); //Pregunta si estamos seguros del cambio
+		if (n==0) {//Si la respuesta es SI, tiene que subir los datos a la base de dato
 			
-			String numSocio; //creo la variable	
+			String numSocio; //Se crean la variable	
 			String nombreCompleto;
 			String esTrabajador;
 			String fechaNac;
 			String masInfo;
 		
-			numSocio = this.view.gettextPaneSocio().getText();   
+			numSocio = this.view.gettextPaneSocio().getText();   //Recogemos los datos de los cuadros para enviarlos a la base de datos
 			nombreCompleto = this.view.gettextFieldNombre().getText(); 
 			esTrabajador = this.view.gettextFieldTrabajador().getText().toString(); 
 			fechaNac = this.view.gettextFieldNacimiento().getText().toString();
 			masInfo = this.view.gettextFieldInfo().getText().toString();
 	
-			this.model.confirmarNuevoModel(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo);
+			this.model.confirmarNuevoModel(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo); //Llamamos a la funcion creada en modelo para que nos pase la info guardada de los cuadros
 			
-			JOptionPane.showMessageDialog(null, "El alta de SOCIO nuevo se he generado correctamente");
+			JOptionPane.showMessageDialog(null, "El alta de SOCIO nuevo se he generado correctamente");  //Cuadro de aviso informando del cambio
 			
 			this.view.frmSocio.setVisible(false);
 			BibliotecaController controlador = new BibliotecaController();
 			controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
 		}
-		
-
 	};
 		
-	public void ConfirmarCambiosController(String numSocio,String nombreCompleto,String esTrabajador,String fechaNac,String masInfo) {
+	public void ConfirmarCambiosController() {
+		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de CONFIRMAR los cambios?","Advertencia",JOptionPane.YES_NO_OPTION);
 		
-		
-		
-		
-		
-		
+		if(n==0) {    //Si la respuesta es SI, tiene que subir los datos a la base de datos
+			String numSocio; //Se crean las variables
+			String nombreCompleto; 
+			String esTrabajador;
+			String fechaNac;
+			String masInfo;
+			
+			numSocio = this.view.gettextPaneSocio().getText();   //Recogemos los datos de los cuadros para enviarlos a la base de datos
+			nombreCompleto = this.view.gettextFieldNombre().getText(); 
+			esTrabajador = this.view.gettextFieldTrabajador().getText().toString(); 
+			fechaNac = this.view.gettextFieldNacimiento().getText().toString();
+			masInfo = this.view.gettextFieldInfo().getText().toString();
+			
+			this.model.confirmarCambiosModel(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo);  
+			
+			JOptionPane.showMessageDialog(null, "Los cambios se han realizado  correctamente");	 
+			
+			this.view.frmSocio.setVisible(false);
+			BibliotecaController controlador = new BibliotecaController();
+			controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());	
+		}
 	};
 	
 	public void EliminarSocioController(String numSocio) {
-		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de ELIMINAR registro?","Advertencia",JOptionPane.YES_NO_OPTION);
+		int n = JOptionPane.showConfirmDialog(null,"¿Estas seguro de ELIMINAR registro seleccionado?","Advertencia",JOptionPane.YES_NO_OPTION);
 
 		numSocio = this.view.gettextPaneSocio().getText();
 		if(n==0) {

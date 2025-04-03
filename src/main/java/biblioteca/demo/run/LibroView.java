@@ -29,13 +29,13 @@ public class LibroView {
 	protected JFrame frmLibro;
 	private JTable tablaLibro;
 	private LibroController controlador;
+	private JTextPane textPaneLibro;
 	private TextField textFieldTitulo;
 	private TextField textFieldAutor;
 	private TextField textFieldEdicion;
 	private TextField textFieldCategoria;
 	private DefaultTableModel tablaPrestamo;
 
-	
 	public LibroView(LibroController c) {
 		inicialize(c);
 	}
@@ -83,6 +83,14 @@ public class LibroView {
 		btnConfirmarCambios.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		frmLibro.getContentPane().add(btnConfirmarCambios);
 		
+		JButton btnConfirmarNuevo = new JButton("Confirmar nuevo");
+		btnConfirmarNuevo.setForeground(Color.BLACK);
+		btnConfirmarNuevo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnConfirmarNuevo.setEnabled(false);
+		btnConfirmarNuevo.setBackground(new Color(255, 192, 203));
+		btnConfirmarNuevo.setBounds(391, 174, 207, 51);
+		frmLibro.getContentPane().add(btnConfirmarNuevo);
+		
 		JButton btnEliminar = new JButton("Eliminar");          // Boton "ELIMINAR"
 		btnEliminar.setEnabled(false);
 		btnEliminar.setForeground(Color.BLACK);
@@ -99,7 +107,6 @@ public class LibroView {
 		btnModificarTitulo.setIcon(new ImageIcon("C:\\Users\\mañana\\Vero\\Iconos\\icons8-modificar-16.png"));
 		btnModificarTitulo.setBounds(65, 100, 22, 22);
 		frmLibro.getContentPane().add(btnModificarTitulo);		
-		
 		
 		JButton btnModificarAutor = new JButton("");
 		btnModificarAutor.setEnabled(false);
@@ -119,8 +126,7 @@ public class LibroView {
 		btnModificarCategoria.setBounds(78, 277, 22, 22);
 		frmLibro.getContentPane().add(btnModificarCategoria);
 		
-		
-		JTextPane textPaneLibro = new JTextPane();     //Cuadro para introducir el ISBN
+		this.textPaneLibro = new JTextPane();     //Cuadro para introducir el ISBN
 		textPaneLibro.setText("< Introduce el isbn >");
 		textPaneLibro.setForeground(Color.GRAY);
 		textPaneLibro.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -137,11 +143,14 @@ public class LibroView {
 				textPaneLibro.setForeground(Color.BLACK); //Cambia de color la letra
 				textPaneLibro.setText(null);   //Borra el contenido del cuadro
 
-				textFieldTitulo.setText("Titulo del libro");
-				textFieldAutor.setText("Autor del libro");
-				textFieldEdicion.setText("Año de edición del libro");
-				textFieldCategoria.setText("Categoría del libro");
-				
+				textFieldTitulo.setText(null);
+				textFieldTitulo.setForeground(Color.GRAY);
+				textFieldAutor.setText(null);
+				textFieldAutor.setForeground(Color.GRAY);
+				textFieldEdicion.setText(null);
+				textFieldEdicion.setForeground(Color.GRAY);				
+				textFieldCategoria.setText(null);
+				textFieldCategoria.setForeground(Color.GRAY);				
 				tablaLibro.setVisible(false);
 			}
 		});
@@ -208,7 +217,6 @@ public class LibroView {
 		textFieldCategoria.setBackground(new Color(233, 233, 233));
 		textFieldCategoria.setBounds(20, 306, 147, 21);
 		frmLibro.getContentPane().add(textFieldCategoria);
-		
 
 		//Los titulos de las opciones (txtpn)
 				
@@ -334,20 +342,7 @@ public class LibroView {
 		
 		btnConfirmarCambios.addActionListener(new ActionListener() { //EJECUTAR BOTON CONFIRMAR CAMBIOS 
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				//******* pendiente GRABAR DATOS en base de datos
-				
-				int n = JOptionPane.showConfirmDialog(btnConfirmarCambios,"¿Estas seguro de CONFIRMAR los cambios?","Mensaje",JOptionPane.YES_NO_OPTION);	
-				
-				if(n==0) {    //Si la respuesta es SI
-					
-					//PDTE modificar los datos en la BD...
-					
-					BibliotecaController controlador = new BibliotecaController();
-					controlador.setVistaModel(new BibliotecaView(controlador), new BibliotecaModel());
-					frmLibro.setVisible(false);   //Cuando se confirman los cambios se le quita el editable y cambia el color
-				}
+				controlador.ConfirmarCambiosController();
 			}
 		});
 		
@@ -376,8 +371,7 @@ public class LibroView {
 				textFieldCategoria.setForeground(Color.BLACK);
 				textFieldCategoria.setBackground(Color.WHITE);
 				
-				
-				btnConfirmarCambios.setEnabled(true);
+				btnConfirmarNuevo.setEnabled(true);
 				btnAñadirNuevo.setEnabled(false);
 				btnEliminar.setEnabled(false);
 				tablaLibro.setVisible(false);
@@ -386,8 +380,7 @@ public class LibroView {
     	
 		btnEliminar.addActionListener(new ActionListener() {      // EJECUTAR Boton ELIMINAR
 			public void actionPerformed(ActionEvent e) {
-				int n = JOptionPane.showConfirmDialog(btnEliminar,"Estas seguro de ELIMINAR registro?","Mensaje",JOptionPane.YES_NO_OPTION);				
-				///ConfirmarView confirmar = new ConfirmarView();	 *******************************************************Activa la pantalla Confirmar		
+				controlador.EliminarSocioController(textPaneLibro.getText());
 			}
 		});
 
@@ -404,11 +397,15 @@ public class LibroView {
 		btnAtras.setBackground(Color.LIGHT_GRAY);
 		btnAtras.setBounds(10, 11, 76, 27);
 		frmLibro.getContentPane().add(btnAtras);
-		
+			
 		frmLibro.setVisible(true);
 		
 	}	
 		
+	public JTextPane gettextPaneLibro() {
+		return this.textPaneLibro;
+	};
+	
 	public TextField gettextFieldTitulo() {
 		return this.textFieldTitulo;
 	};

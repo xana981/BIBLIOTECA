@@ -8,7 +8,7 @@ public class SocioModel {
 	
 	Database db = new Database();
 	
-	public List<Object[]> SocioElegidoModel(int i) {
+	public List<Object[]> SocioElegidoModel(int i) {  //Carga la informacion del socio seleccionado
 		
 		List<Object[]> lista = null; //esta lista es el resultado que le va a pasar al controlador como resultado de la consulta
 									// a la base de datos
@@ -22,7 +22,7 @@ public class SocioModel {
 		
 	}
 	
-	public List<Object[]> infoPrestamoModel(int j) {
+	public List<Object[]> infoPrestamoModel(int j) {  //Carga la lista de los libros prestados que tiene el socio
 		
 		List<Object[]> tabla = null; //esta lista es el resultado que le va a pasar al controlador como resultado de la consulta
 									// a la base de datos
@@ -35,9 +35,6 @@ public class SocioModel {
 		return tabla;
 	}
 	
-	
-	
-	
 	public void confirmarNuevoModel(String num,String nombre,String trabaja,String fecha,String info) {  //Insertar VALORES de un socio NUEVO
 		
 		String sqlNuevo = "INSERT INTO Socio(numSocio,nombreCompleto,esTrabajador,fechaNac,masInfo) VALUES (?,?,?,?,?)";  
@@ -47,15 +44,15 @@ public class SocioModel {
 	}
 	
 		
-	public void ConfirmarCambiosModel(int num,String nombre,String trabaja,int fecha,String info) {
+	public void confirmarCambiosModel(String num,String nombre,String trabaja,String fecha,String info) { //Modificar los VALORES del socio que hemos introducido
 		
-		String sqlCambios = "UPDATE Socio SET (nombreCompleto = ?,esTrabajador = ?,fechaNac = ?,masInfo = ?) WHERE numSocio = ?";
-		
+		String sqlCambios = "UPDATE Socio SET nombreCompleto = ?,esTrabajador = ?,fechaNac = ?,masInfo = ? WHERE numSocio = ?";
+				
 		db.executeUpdate(sqlCambios,nombre,trabaja,fecha,info,num); 
 		
 	}
 	
-	public void EliminarSocioModel(String numSocio) {
+	public void EliminarSocioModel(String numSocio) {  //Eliminar el SOCIO que hemos seleccionado 
 		
 		String sqlBorrar = "DELETE FROM Socio WHERE numSocio = ?";
 		
